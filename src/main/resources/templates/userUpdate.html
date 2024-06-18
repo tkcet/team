@@ -13,8 +13,7 @@
 	<h2>[[${@loginAccount.name}]]様、変更する内容をご入力ください。</h2>
 	<br>
 	<form action="/user/update" method="post">
-		アカウントID：<input type="text" name="accountId" th:value="${order.accountId}"><br>
-		予約番号：<input type="text" name="ordersId" th:value="${order.ordersId}"><br>
+		予約番号：[[${order.ordersId}]]"><br>
 		部屋番号：<input type="text" name="roomNo" th:value="${order.roomNo}">号室<br>
 		人数：<input type="text" name="numberPeople" th:value="${order.numberPeople}">人<br>
 		チェックイン日：<input type="date" name="checkIn" th:value="${order.checkIn}">～<br>
