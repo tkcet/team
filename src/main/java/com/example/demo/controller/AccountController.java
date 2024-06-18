@@ -20,20 +20,19 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/account")
 public class AccountController {
-	
-@Autowired
-AccountRepository accountRepository;
-@Autowired
-HttpSession session;
 
-@Autowired
-LoginAccount loginAccount;
-	
+	@Autowired
+	AccountRepository accountRepository;
+	@Autowired
+	HttpSession session;
+
+	@Autowired
+	LoginAccount loginAccount;
+
 	@GetMapping({ "/login", "/logout" })
 	public String index(
-//			@RequestParam String error,
-			Model model
-			) {
+			//			@RequestParam String error,
+			Model model) {
 		session.invalidate();
 		return "userLogin";
 	}
@@ -42,54 +41,58 @@ LoginAccount loginAccount;
 	public String login(
 			@RequestParam("email") String email,
 			@RequestParam("password") String password,
-			Model model
-			) {
-		Optional<Account> record=accountRepository.findByEmailAndPassword(email,password);
-System.out.println(record);
-if(record.isEmpty()) {
-	return "userLogin";
-}
-Account account = record.get();
-loginAccount.setName(account.getName());
+			Model model) {
+		Optional<Account> record = accountRepository.findByEmailAndPassword(email, password);
+		System.out.println(record);
+		if (record.isEmpty()) {
+			return "userLogin";
+		}
+		Account account = record.get();
+		if (account.getDeletionFlag() == 1) {
+			return "userLogin";
+		}
+		loginAccount.setName(account.getName());
 
 		return "userHome";
 	}
-	
+
 	@GetMapping("/add")
 	public String add(
-			@RequestParam(name="name", defaultValue="") String name,
-			@RequestParam(name="gender", defaultValue="") String gender,
-			@RequestParam(name="address", defaultValue="") String address,
-			@RequestParam(name="tel", defaultValue="") String tel,
-			@RequestParam(name="email", defaultValue="") String email,
+			@RequestParam(name = "name", defaultValue = "") String name,
+			@RequestParam(name = "gender", defaultValue = "") String gender,
+			@RequestParam(name = "address", defaultValue = "") String address,
+			@RequestParam(name = "tel", defaultValue = "") String tel,
+			@RequestParam(name = "email", defaultValue = "") String email,
 
-			Model model
-			) {
+			Model model) {
 		model.addAttribute("name", name);
 		model.addAttribute("gender", gender);
 		model.addAttribute("address", address);
 		model.addAttribute("tel", tel);
 		model.addAttribute("email", email);
-		
+
 		return "userAddAccount";
 	}
 
 	@PostMapping("/add")
 	public String add(
 			@RequestParam("name") String name,
-			@RequestParam("gender") String gender,
+			@RequestParam(name="gender",defaultValue="") String gender,
 			@RequestParam("address") String address,
 			@RequestParam("tel") String tel,
 			@RequestParam("email") String email,
 			@RequestParam("password") String password,
-			Model model
-			) {
+			Model model) {
 		System.out.println("account");
-		if(name.isEmpty()||address.isEmpty()||tel.isEmpty()||email.isEmpty()||password.isEmpty()
-				) {
-			model.addAttribute("error", "未入力の欄があります");
-			return "userAddAccount";
-		}
+		int errorCount = 0;
+			
+			Optional<Account> record = accountRepository.findByEmail(email);
+			
+			if (!email.matches(".*" +"@" + ".*")||!record.isEmpty()) {
+				model.addAttribute("emailError", "*");
+				errorCount ++;	
+			}
+			
 		model.addAttribute("name", name);
 		model.addAttribute("gender", gender);
 		model.addAttribute("address", address);
@@ -97,9 +100,13 @@ loginAccount.setName(account.getName());
 		model.addAttribute("email", email);
 		model.addAttribute("password", password);
 
+		if(errorCount != 0) {
+				model.addAttribute("error", "再入力する必要があります");
+				return "userAddAccount";
+			}
 		return "userAddAccountConfirm";
 	}
-	
+
 	@PostMapping("/add/confirm")
 	public String addConfirm(
 			@RequestParam("name") String name,
@@ -108,19 +115,16 @@ loginAccount.setName(account.getName());
 			@RequestParam("tel") String tel,
 			@RequestParam("email") String email,
 			@RequestParam("password") String password,
-			Model model
-			) {
-		
-		
-		Account account = new Account(name,gender,address,tel,email,password);
+			Model model) {
+
+		Account account = new Account(name, gender, address, tel, email, password);
 		account.setDeletionFlag(0);
 		account.setVersionNo(1);
 		account.setCreateDate(LocalDate.now());
-		
+
 		accountRepository.save(account);
 		System.out.println(password);
-		
-		
+
 		return "redirect:/account/login";
 	}
 }
