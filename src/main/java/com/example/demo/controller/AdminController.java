@@ -106,13 +106,14 @@ public class AdminController {
 		if(!record.isEmpty()) {
 			Account account = record.get();
 			if(account.getAccountId()!=accountId) {
+				model.addAttribute("emailError", "メールアドレスが重複しています");
 				errorCount++;
 			}
 			
 		}
 
 		if (!email.matches(".*" + "@" + ".*") ) {
-			model.addAttribute("emailError", "*");
+			model.addAttribute("emailError", "メールアドレスに@は必須です");
 			errorCount++;
 		}
 		
