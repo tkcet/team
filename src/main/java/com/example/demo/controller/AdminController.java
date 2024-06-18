@@ -100,26 +100,32 @@ public class AdminController {
 			Model model) {
 
 		int errorCount = 0;
-
+		System.out.println(errorCount);
 		Optional<Account> record = accountRepository.findByEmail(email);
+		
+		if(!record.isEmpty()) {
+			Account account = record.get();
+			if(account.getAccountId()!=accountId) {
+				errorCount++;
+			}
+			
+		}
 
-		if (!email.matches(".*" + "@" + ".*") || !record.isEmpty()) {
+		if (!email.matches(".*" + "@" + ".*") ) {
 			model.addAttribute("emailError", "*");
 			errorCount++;
 		}
+		
+		System.out.println(errorCount);
 
-		model.addAttribute("name", name);
-		model.addAttribute("gender", gender);
-		model.addAttribute("address", address);
-		model.addAttribute("tel", tel);
-		model.addAttribute("email", email);
-
+		Account account = accountRepository.findById(accountId).get();
 		if (errorCount != 0) {
+
 			model.addAttribute("error", "再入力する必要があります");
+			model.addAttribute("account", account);
 			return "adminUpdateExecute";
 		}
 
-		Account account = accountRepository.findById(accountId).get();
 		System.out.println("aaa");
 
 		String password = account.getPassword();

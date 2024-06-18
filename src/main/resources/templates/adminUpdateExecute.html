@@ -22,9 +22,9 @@
 			</tr>
 			<tr>
 				<th>性別</th>
-				<td><input type="radio" name="gender" value="men" th:checked="${account.gender}">男性
-					<input type="radio" name="gender" value="women" th:checked="${account.gender}">女性
-					<input type="radio" name="gender" value="else" th:checked="${account.gender}">その他
+				<td><input type="radio" name="gender" value="men" th:checked="${account.gender=='men'}">男性
+					<input type="radio" name="gender" value="women" th:checked="${account.gender=='women'}">女性
+					<input type="radio" name="gender" value="else" th:checked="${account.gender=='else'}">その他
 				</td>
 			</tr>
 			<tr>
