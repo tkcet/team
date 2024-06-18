@@ -45,6 +45,7 @@ public class AccountController {
 		Optional<Account> record = accountRepository.findByEmailAndPassword(email, password);
 		System.out.println(record);
 		if (record.isEmpty()) {
+			model.addAttribute("error", "メールアドレスもしくはパスワードが一致しませんでした");
 			return "userLogin";
 		}
 		Account account = record.get();

@@ -3,15 +3,14 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Marina Bay sunads ログイン</title>
+	<title>○○Hotel ログイン</title>
 </head>
 
 <body>
 	<header>header</header>
 	<hr>
 	<br>
-	<th:if='${error} != null'>	[[${error}]]</th:if>
-
+	[[${error}]]
 	<form action="/account/login" method="post">
 		メールアドレス：<input type="text" name="email" placeholder="email" maxlength="256" required><br>
 		パスワード：<input type="text" name="password" placeholder="password" maxlength="20" required>
