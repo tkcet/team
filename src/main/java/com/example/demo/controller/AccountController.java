@@ -50,6 +50,7 @@ public class AccountController {
 		}
 		Account account = record.get();
 		if (account.getDeletionFlag() == 1) {
+			model.addAttribute("error", "メールアドレスもしくはパスワードが一致しませんでした");
 			return "userLogin";
 		}
 		loginAccount.setName(account.getName());
