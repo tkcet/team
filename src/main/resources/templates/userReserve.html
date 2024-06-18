@@ -15,10 +15,17 @@
 		<span style="color:red;">[[${error}]]</span>
 	</th:block>
 	<form action="/user/reserve" method="post">
-		チェックイン日：<input type="date" name="checkIn">～
-		チェックアウト日：<input type="date" name="checkOut"><br>
-		お部屋番号：<input type="text" name="roomNo">号室<br>
-		人数：<input type="text" name="numberPeople">人<br>
+		チェックイン日：<input type="date" name="checkIn" required>～
+		チェックアウト日：<input type="date" name="checkOut" required><br>
+		お部屋番号：<input type="text" name="roomNo" maxlength="3">号室
+		<pr>　<pr>
+		人数：<select name="numberPeople" required>
+			<option value="1">1人</option>
+			<option value="2">2人</option>
+			<option value="3">3人</option>
+			<option value="4">4人</option>
+			<option value="5">5人</option>
+		</select>
 		<input type="submit" value="予約"><br><br>
 	</form>
 	<a href="/user/reserve">戻る</a>
