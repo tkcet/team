@@ -4,13 +4,13 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Marina Bay sunads 予約完了</title>
+	<title>Marina Bay sunads 予約変更</title>
 </head>
 
 <body>
-	<h1>予約完了</h1>
+	<h1>予約変更</h1>
 	<hr>
-	<h2>[[${@loginAccount.name}]]様、以下の内容で予約を承りました。</h2>
+	<h2>[[${@loginAccount.name}]]様、変更する内容をご入力ください。</h2>
 	<br>
 	<form action="/user/update" method="post">
 		アカウントID：<input type="text" name="accountId" th:value="${order.accountId}"><br>
@@ -20,7 +20,6 @@
 		チェックイン日：<input type="date" name="checkIn" th:value="${order.checkIn}">～<br>
 		チェックアウト日：<input type="date" name="checkOut" th:value="${order.checkOut}"><br><br>
 		<hr>
-		<h3>合計金額：\<input type="text" name="totalPrice" th:alue="${order.totalPrice}"></h3>
 		<input type="submit" value="予約を変更"><br>
 	</form>
 
