@@ -107,7 +107,6 @@ public class UserController {
 			@RequestParam(name = "checkIn", defaultValue = "") LocalDate checkIn,
 			@RequestParam(name = "checkOut", defaultValue = "") LocalDate checkOut,
 			@RequestParam(name = "totalPrice", defaultValue = "0") Integer totalPrice) {
-		//Optional<Account> account1 = accountRepository.findByEmail(account.getEmail());
 		if (numberPeople == 0 || checkIn == null || checkOut == null) {
 			List<Order> order = null;
 			LocalDate now = LocalDate.now();
