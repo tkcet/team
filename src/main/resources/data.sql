@@ -36,3 +36,10 @@ INSERT INTO room(room_no, price, deletion_flag) VALUES(509, 6000, 0);
 INSERT INTO room(room_no, price, deletion_flag) VALUES(510, 6000, 0);
 
 INSERT INTO orders(account_id, room_no, number_people,total_price,deletion_flag) VALUES(1,201,2,12000,0);
+INSERT INTO orders(account_id, room_no, number_people,check_in, check_out, total_price,deletion_flag) VALUES(1,203,2,'2024-06-21','2024-06-25',12000,0);
+INSERT INTO orders(account_id, room_no, number_people,check_in, check_out, total_price,deletion_flag) VALUES(1,304,2,'2024-06-27','2024-06-30',12000,0);
+INSERT INTO orders(account_id, room_no, number_people,check_in, check_out, total_price,deletion_flag) VALUES(1,501,2,'2024-06-27','2024-06-30',12000,0);
+INSERT INTO orders(account_id, room_no, number_people,check_in, check_out, total_price,deletion_flag) VALUES(1,210,2,'2024-06-01','2024-06-05',12000,1);
+INSERT INTO orders(account_id, room_no, number_people,check_in, check_out, total_price,deletion_flag) VALUES(1,201,2,'2024-07-01','2024-07-05',12000,0);
+INSERT INTO orders(account_id, room_no, number_people,check_in, check_out, total_price,deletion_flag) VALUES(1,207,2,'2024-06-25','2024-07-03',12000,0);
+INSERT INTO orders(account_id, room_no, number_people,check_in, check_out, total_price,deletion_flag) VALUES(1,203,2,'2024-06-07','2024-06-13',12000,0);
