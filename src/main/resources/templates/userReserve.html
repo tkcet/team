@@ -9,7 +9,7 @@
 <body>
 	<h1>○○Hotel 新規予約</h1>
 	<hr>
-	<p>ようこそ！○○様</p>
+	<p>ようこそ！[[${@loginAccount.name}]]様</p>
 	<br>
 	<th:block th:if="${error}">
 		<span style="color:red;">[[${error}]]</span>

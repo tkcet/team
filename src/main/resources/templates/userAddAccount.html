@@ -21,9 +21,9 @@
 		
 		電話番号：<input type="tel" name="tel" th:value="${tel}" placeholder="ハイフン無し"  minlength="10" maxlength="11" required><br>
 		
-		[[${emailError}]]メールアドレス：<input type="text" name="email" th:value="${email}" maxlength="256"  required><br>
+		[[${emailError}]]メールアドレス：<input type="email" name="email" th:value="${email}" maxlength="256"  required><br>
 		
-		パスワード：<input type="text" name="password" placeholder="8文字以上20文字以内"  minlength="8" maxlength="20"  required><br>
+		パスワード：<input type="password" name="password" placeholder="8文字以上20文字以内"  minlength="8" maxlength="20"  required><br>
 		<input type="submit" value="登録">
 	</form>
 </body>
