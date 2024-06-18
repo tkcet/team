@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>顧客情報一覧</title>
+</head>
+
+<body>
+	<!--div style="text-align: center;"--></div>
+	<h1>顧客情報一覧</h1>
+	<br>
+
+
+
+	<table border="1">
+		<tr>
+			<th>ID</th>
+			<th>お名前</th>
+			<th>性別</th>
+			<th>メールアドレス</th>
+			<th>電話番号</th>
+			<th>住所</th>
+		</tr>
+		<tr th:each="accountAll:${accountAll}">
+			<td>
+				<a th:href="|/admin/update/${accountAll.accountId}?accountId=${accountAll.accountId}|">
+					[[${accountAll.accountId}]]
+				</a></td>
+			<td>[[${accountAll.name}]]</td>
+			<td>[[${accountAll.gender}]]</td>
+			<td>[[${accountAll.email}]]</td>
+			<td>[[${accountAll.tel}]]</td>
+			<td>[[${accountAll.address}]]</td>
+		</tr>
+
+
+	</table>
+
+
+</body>
+
+</html>

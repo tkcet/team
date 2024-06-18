@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>○○Hotel 会員登録</title>
+</head>
+<body>
+<h1>○○Hotel 会員登録</h1>
+<hr>
+[[${error}]]
+<form action="/account/add" method="post">
+	名前：<input type="text" name="name" th:value="${name}"><br>
+	性別：<input type="radio" name="gender" value="men" checked>男性
+      <input type="radio" name="gender" value="women">女性
+      <!-- input type="radio" name="gender" value="その他">その他<br-->
+      <br>
+	住所：<input type="text" name="address" th:value="${address}"><br>
+	電話番号：<input type="text" name="tel" th:value="${tel}"><br>
+	メールアドレス：<input type="text" name="email" th:value="${email}"><br>
+	パスワード：<input type="text" name="password"><br>
+	<input type="submit" value="登録">
+</form>
+</body>
+</html>

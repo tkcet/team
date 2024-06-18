@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>○○Hotel 新規予約</title>
+</head>
+
+<body>
+	<h1>○○Hotel 新規予約</h1>
+	<hr>
+	<p>ようこそ！○○様</p>
+	<br>
+	<th:block th:if="${error}">
+		<span style="color:red;">[[${error}]]</span>
+	</th:block>
+	<!--	<form action="/user/reserve" method="post">-->
+	<!--		チェックイン日：<input type="date" name="checkIn" th:value="[[${checkIn}]]">～-->
+	<!--		チェックアウト日：<input type="date" name="checkOut" th:value="[[${checkOut}]]"><br>-->
+	<!--		お部屋番号：<input type="text" name="roomNo" th:value="[[${roomNo}]]">号室<br>-->
+	<!--		人数：<input type="text" name="numberPeople" th:value="[[${totalPrice}]]">人<br>-->
+	<!--		<input type="submit" value="予約"><br><br>-->
+	<!--	</form>-->
+	<form action="/user/reserve" method="post">
+		チェックイン日：<input type="date" name="checkIn">～
+		チェックアウト日：<input type="date" name="checkOut"><br>
+		お部屋番号：<input type="text" name="roomNo">号室<br>
+		人数：<input type="text" name="numberPeople">人<br>
+		<input type="submit" value="予約"><br><br>
+	</form>
+	<a href="/user/reserve">戻る</a>
+	<h2 style="text-align: center"><a href="" style="text-decoration: none;">◀</a>
+		　　　　　　　　　　　　　[[${month}]]月　　　　　　　　　　　　　
+		<a href="" style="text-decoration: none;">▶</a>
+	</h2>
+	<style type="text/css">
+		.diagonal tr:first-child th:first-child {
+			background-image: linear-gradient(to right top, transparent calc(50% - 0.5px), #eaeaea 50%, #eaeaea calc(50% + 0.5px), transparent calc(50% + 1px));
+			display: grid;
+			width: max-content;
+			justify-content: space-between;
+			grid-template-columns: repeat(2, 1fr);
+			grid-auto-rows: 1fr;
+		}
+
+		.col-header {
+			grid-column-start: 2;
+			text-align: right;
+		}
+
+		.row-header {
+			grid-column-start: 1;
+		}
+	</style>
+	<table align="center" border="1" class="diagonal">
+		<tr>
+			<td align="center"><span class="col-header">部屋番号</span><span class="row-header">日付</span></td>
+			<td width="3%" align="center" th:each="day:${#numbers.sequence(1,maxDay)}">
+				[[${day}]]
+			</td>
+		</tr>
+		<tr th:each="num:${roomList}">
+			<td align="center">[[${num}]]</td>
+			<td width="3%" align="center" th:each="day:${#numbers.sequence(1,maxDay)}"></td>
+		</tr>
+		<!--		<tr th:each="list:${@roomList}">-->
+		<!--			<td>[[${list}]]</td>-->
+		<!--			<td width="3%" align="center" th:each="day:${#numbers.sequence(1,maxDay)}">-->
+		<!--				[[${day}]]-->
+		<!--			</td>-->
+		<!--		</tr>-->
+	</table>
+</body>
+
+</html>

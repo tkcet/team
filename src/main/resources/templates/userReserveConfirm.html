@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>○○Hotel 予約確認</title>
+</head>
+
+<body>
+	<h1>予約確認</h1>
+	<hr>
+	<h2>○○様</h2>
+	<br>
+	<form action="/user/reserve/confirm" method="post">
+		アカウントID：[[${order.accountId}]]
+		<input type="hidden" name="accountId" th:value="${order.accountId}"><br>
+		予約番号：[[${order.ordersId}]]
+		<input type="hidden" name="ordersId" th:value="${order.ordersId}"><br>
+		部屋番号：[[${order.roomNo}]]
+		<input type="hidden" name="roomNo" th:value="${order.roomNo}">号室<br>
+		人数：[[${order.numberPeople}]]
+		<input type="hidden" name="numberPeople" th:value="${order.numberPeople}">人<br>
+		チェックイン日：[[${order.checkIn}]]
+		<input type="hidden" name="checkIn" th:value="${order.checkIn}"><br>
+		チェックアウト日：[[${order.checkOut}]]
+		<input type="hidden" name="checkOut" th:value="${order.checkOut}"><br><br>
+		<hr>
+		<h3>合計金額：\[[${order.totalPrice}]]
+			<input type="hidden" name="totalPrice" th:value="${order.totalPrice}">
+		</h3>
+		<input type="submit" value="予約完了"><br>
+		<a href="/user/Reserve">戻る</a>
+		<a href="/user/logout">ログアウト</a>
+	</form>
+</body>
+
+</html>

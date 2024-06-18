@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>○○Hotel 予約内容</title>
+</head>
+
+<body>
+	<h1>予約内容</h1>
+	<hr>
+	<h2>○○様</h2>
+	<hr>
+	<span th:each="order:${list}">
+		<br>
+		アカウントID：<span th:text="${order.accountId}"></span><br>
+		予約番号：<span th:text="${order.ordersId}"></span><br>
+		部屋番号：<span th:text="${order.roomNo}"></span>号室<br>
+		人数：<span th:text="${order.numberPeople}"></span>人<br>
+		チェックイン日：<span th:text="${order.checkIn}"></span>～<br>
+		チェックアウト日：<span th:text="${order.checkOut}"></span>
+		<h3>合計金額：\<span th:text="${order.totalPrice}"></span></h3>
+		<form th:action="|/user/update/${order.ordersId}|" method="get">
+			<input type="submit" value="予約を変更"><br>
+		</form>
+		<form th:action="|/user/delete/${order.ordersId}|" method="post">
+			<input type="submit" value="予約をキャンセル"><br>
+		</form>
+		<br>
+		<hr>
+	</span>
+	<a href="/user/logout">ログアウト</a><br>
+	<a href="/user/reserve">新規予約へ</a>
+	<a href="/user/home">ホテルトップページへ</a>
+
+
+</body>
+
+</html>

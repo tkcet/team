@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>管理者ログイン画面</title>
+</head>
+<body>
+	
+	<form action="/admin/login" method="post">
+		<div style="text-align: center;">
+	<h1>管理者ログイン</h1>
+	[[${error}]]
+	<br>
+	<input type="text" name="accountId" placeholder="ID">
+	<br>
+	<input type="text" name="password" placeholder="PASSWORD">
+	<br>
+	<input type="submit" value="ログイン">
+	</div>
+	</form>
+
+</body>
+</html>
+

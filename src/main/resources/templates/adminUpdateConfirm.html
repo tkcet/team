@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>顧客情報変更変更画面</title>
+</head>
+
+<body>
+	
+		<h1>管理者用</h1>
+		<br>
+		<h3>以下の内容で顧客情報を変更しました。</h3>
+		<br>
+
+		顧客ID:[[${newAccount.accountId}]]
+		<br>
+		名前：[[${newAccount.name}]]
+		<br>
+		性別：[[${newAccount.gender}]]
+		<br>
+		住所：[[${newAccount.address}]]
+		<br>
+		電話番号：[[${newAccount.tel}]]
+		<br>
+		メールアドレス：[[${newAccount.email}]]
+		<br>
+		<a href="/admin/top">管理者用トップページへ</a>
+
+		<form action="/admin/logout" method="get">
+			<input type="submit" value="ログアウト">
+		</form>
+	
+
+</body>
+
+</html>
