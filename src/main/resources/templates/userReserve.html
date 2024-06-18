@@ -9,7 +9,7 @@
 <body>
 	<h1>○○Hotel 新規予約</h1>
 	<hr>
-	<p>ようこそ！○○様</p>
+	<p>ようこそ！[[${@loginAccount.name}]]様</p>
 	<br>
 	<th:block th:if="${error}">
 		<span style="color:red;">[[${error}]]</span>
@@ -25,10 +25,17 @@
 		チェックイン日：<input type="date" name="checkIn">～
 		チェックアウト日：<input type="date" name="checkOut"><br>
 		お部屋番号：<input type="text" name="roomNo">号室<br>
-		人数：<input type="text" name="numberPeople">人<br>
+		人数：<select name="numberPeople" required>
+			<option value="1">1人</option>
+			<option value="2">2人</option>
+			<option value="3">3人</option>
+			<option value="4">4人</option>
+			<option value="5">5人</option>
+		</select>
+		<pr>　<pr>
 		<input type="submit" value="予約"><br><br>
 	</form>
-	<a href="/user/reserve">戻る</a>
+
 	<h2 style="text-align: center"><a href="" style="text-decoration: none;">◀</a>
 		　　　　　　　　　　　　　[[${month}]]月　　　　　　　　　　　　　
 		<a href="" style="text-decoration: none;">▶</a>

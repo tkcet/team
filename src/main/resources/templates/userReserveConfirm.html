@@ -13,8 +13,6 @@
 	<h2>[[${@loginAccount.name}]]様</h2>
 	<br>
 	<form action="/user/reserve/confirm" method="post">
-		アカウントID：[[${order.accountId}]]
-		<input type="hidden" name="accountId" th:value="${order.accountId}"><br>
 		予約番号：[[${order.ordersId}]]
 		<input type="hidden" name="ordersId" th:value="${order.ordersId}"><br>
 		部屋番号：[[${order.roomNo}]]
