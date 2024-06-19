@@ -3,21 +3,26 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Marina Bay sunads 新規予約</title>
+	<title>Marina Bay Sunas 新規予約</title>
+	<link rel="stylesheet" type="text/css" href="/userReserve.css">
 </head>
 
 <body>
 
 	<header th:replace="header"></header>
 
-	<h1>○○Hotel 新規予約</h1>
+	<h1 class="h1">新規予約</h1>
 	<hr>
 	<p>ようこそ！[[${@loginAccount.name}]]様</p>
 	<br>
 	<th:block th:if="${error}">
 		<span style="color:red;">[[${error}]]</span>
 	</th:block>
-	<form action="/user/reserve" method="post">
+	<form action="/user/reserve" method="post" class="form">
+<!--		Arrival：<input type="date" name="date">～-->
+<!--	    Departure：<input type="date" name="date"><br>-->
+<!--		Room Number：<input type="text" name="room_no"><br>-->
+<!--		Guests Per Room：<input type="text" name="room_no"><br>-->
 		チェックイン日：<input type="date" name="checkIn" required>～
 		チェックアウト日：<input type="date" name="checkOut" required><br>
 		お部屋番号：<input type="text" name="roomNo" maxlength="3">号室

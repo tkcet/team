@@ -3,24 +3,26 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>○○Hotel ログイン</title>
+	<title>Marina Bay Sunas Login</title>
+	<link rel="stylesheet" type="text/css" href="/userLogin.css">
 </head>
 
 <body>
 	<header th:replace="header"></header>
-
+    
+    <h4 class="h_4">Login</h4>
 	<hr>
 	<br>
 	[[${error}]]
 	<form action="/account/login" method="post">
-		メールアドレス：<input type="email" name="email" placeholder="email" maxlength="256" required><br>
-		パスワード：<input type="password" name="password" placeholder="password" maxlength="20" required>
-		<input type="submit" value="ログイン">
+		<div class="m">メールアドレス：</div><input type="email" name="email" placeholder="email" maxlength="256" required><br>
+		<div class="pas">パスワード：<input type="password" name="password" placeholder="password" maxlength="20" required>
+		<input type="submit" value="LOGIN" class="log">
 
 	</form>
 
 	<a href="/account/add">新規登録はこちら</a>
-
+    <!--		Create account-->
 	<footer th:replace="footer"></footer>
 </body>
 

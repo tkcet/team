@@ -4,10 +4,12 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>○○Hotel 予約完了</title>
+	<title>Marina Bay Sunas 予約完了</title>
+	<link rel="stylesheet" type="text/css" href="/userReserve.css">
 </head>
 
 <body>
+	<header th:replace="header"></header>
 	<h1>予約完了</h1>
 	<hr>
 	<h2>[[${@loginAccount.name}]]様、[[${message}]]。</h2>
@@ -19,7 +21,7 @@
 	<a href="/user/reserve">新規予約へ</a>
 	<a href="/user/home">ホテルトップページへ</a>
 
-
+    <footer th:replace="footer"></footer>
 </body>
 
 </html>

@@ -3,7 +3,8 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Marina Bay Sunads 予約履歴</title>
+	<title>Marina Bay Sunas 予約履歴</title>
+	<link rel="stylesheet" type="text/css" href="/userReserve.css">
 </head>
 
 <body>
@@ -21,17 +22,19 @@
 		チェックアウト日：<span th:text="${order.checkOut}"></span>
 		<h3>合計金額：\<span th:text="${order.totalPrice}"></span></h3>
 		<form th:action="|/user/update/${order.ordersId}|" method="get">
-			<input type="submit" value="予約を変更"><br>
+			<input type="submit" value="CHANGE RESERVATION"><br>
+                                    <!--予約を変更-->
 		</form>
 		<form th:action="|/user/delete/${order.ordersId}|" method="post">
-			<input type="submit" value="予約をキャンセル"><br>
+			<input type="submit" value="CANCEL"><br>
+                                    <!--予約をキャンセル-->
 		</form>
 		<br>
 		<hr>
 	</span>
 	<a href="/user/logout">ログアウト</a><br>
 	<a href="/user/reserve">新規予約へ</a>
-	<a href="/user/home">ホテルトップページへ</a>
+	<a href="/user/home">ホームページへ</a>
 
 	<footer th:replace="footer"></footer>
 
