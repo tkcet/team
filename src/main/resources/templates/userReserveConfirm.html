@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
@@ -8,6 +7,8 @@
 </head>
 
 <body>
+	<header th:replace="header"></header>
+
 	<h1>予約確認</h1>
 	<hr>
 	<h2>[[${@loginAccount.name}]]様</h2>
@@ -33,6 +34,8 @@
 		<a href="/user/Reserve">戻る</a>
 		<a href="/user/logout">ログアウト</a>
 	</form>
+
+	<footer th:replace="footer"></footer>
 </body>
 
 </html>

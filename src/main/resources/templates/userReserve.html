@@ -7,6 +7,9 @@
 </head>
 
 <body>
+
+	<header th:replace="header"></header>
+
 	<h1>○○Hotel 新規予約</h1>
 	<hr>
 	<p>ようこそ！[[${@loginAccount.name}]]様</p>
@@ -19,14 +22,14 @@
 		チェックアウト日：<input type="date" name="checkOut" required><br>
 		お部屋番号：<input type="text" name="roomNo" maxlength="3">号室
 		<pr>　<pr>
-		人数：<select name="numberPeople" required>
-			<option value="1">1人</option>
-			<option value="2">2人</option>
-			<option value="3">3人</option>
-			<option value="4">4人</option>
-			<option value="5">5人</option>
-		</select>
-		<input type="submit" value="予約"><br><br>
+				人数：<select name="numberPeople" required>
+					<option value="1">1人</option>
+					<option value="2">2人</option>
+					<option value="3">3人</option>
+					<option value="4">4人</option>
+					<option value="5">5人</option>
+				</select>
+				<input type="submit" value="予約"><br><br>
 	</form>
 	<a href="/user/reserve">戻る</a>
 	<h2 style="text-align: center"><a th:href="|/user/reserve?month=${lastMonth}|" style="text-decoration: none;">◀</a>
@@ -108,6 +111,9 @@
 			</span>
 		</tr>
 	</table>
+
+
+	<footer th:replace="footer"></footer>
 </body>
 
 </html>
