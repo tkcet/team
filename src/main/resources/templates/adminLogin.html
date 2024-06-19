@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>管理者ログイン画面</title>
 
-<link rel="stylesheet" type="text/css" href="/admin.css">
+<head>
+	<meta charset="UTF-8">
+	<title>管理者ログイン画面</title>
+
+	<link rel="stylesheet" type="text/css" href="/admin.css">
 </head>
+
 <body>
-	
+
 	<form action="/admin/login" method="post">
 		<div style="text-align: center;">
-	<h1>管理者ログイン</h1>
-	[[${error}]]
-	<br>
-	<input type="text" name="accountId" placeholder="ID" required>
-	<br>
-	<input type="text" name="password" placeholder="PASSWORD" required>
-	<br>
-	<input type="submit" value="ログイン" class="log">
-	</div>
+			<br>
+			<h1>管理者ログイン</h1>
+			[[${error}]]
+			<br>
+			<input type="text" name="accountId" placeholder="ID" required>
+			<br>
+			<input type="password" name="password" placeholder="PASSWORD" required>
+			<br>
+			<br>
+			<input type="submit" value="ログイン" class="log">
+		</div>
 	</form>
 
 </body>
-</html>
 
+</html>

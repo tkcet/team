@@ -38,35 +38,39 @@
 				</tr>
 				<tr>
 					<th>電話番号</th>
-					<td><input type="text" name="tel" th:value="${account.tel}"></td>
+					<td><input type="tel" name="tel" th:value="${account.tel}"></td>
 				</tr>
 				<tr>
 					<th>メールアドレス</th>
-					<td><input type="text" name="email" th:value="${account.email}"></td>
+					<td><input type="email" name="email" th:value="${account.email}" required></td>
 				</tr>
+
 				<tr>
-					<th>更新者</th>
-					<td><input type="text" name="updater"></td>
+					<td colspan="2">
+						<pr>　</pr>
+					</td>
 				</tr>
-			</table>
-			<input type="submit" value="変更">
+
+				<tr>
+					<td colspan="2"><input type="text" name="updater" placeholder="更新者">
+						<input type="submit" value="変更">
+					</td>
+				</tr>
 		</form>
 
 		<form action="/admin/delete" method="post">
-			<input type="hidden" name="accountId" th:value="${account.accountId}">
-			<table border="1">
-				<tr>
-					<th>更新者</th>
-					<td><input type="text" name="updater"></td>
-					<td><input type="submit" value="削除"></td>
-				</tr>
-
-			</table>
-
+			<tr>
+				<input type="hidden" name="accountId" th:value="${account.accountId}">
+				<td colspan="2"><input type="text" name="updater" placeholder="更新者">
+					<input type="submit" value="削除">
+				</td>
+			</tr>
 		</form>
 
-		<a href="/admin/top">管理者用トップページへ</a>
+		</table>
+		<br>
 
+			<a href="/admin/top">管理者用トップページへ</a>
 
 </body>
 
