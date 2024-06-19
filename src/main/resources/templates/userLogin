@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>login</title>
+<link "">
+</head>
+<body>
+<h1>Hotel login</h1>
+<hr>
+<br>
+<form action="/" method="">
+	<div class=""><input type="text" name="accountId" placeholder="aacount ID" class="a"></div><br>
+	<input type="text" name="password" placeholder="password">
+	<input type="submit" value="ログイン">
+	
+</form>
+<nav></nav>
+</body>
+
+<footer th:replace="userLogin"></>
+</html>

@@ -16,7 +16,7 @@ body{
 
 .log {
 	color:rgb(255, 255, 255);
-	font-family:  Times New Roman;   
+	font-family:  Lucida Console;   
 	background-color: black;
 }
 
@@ -30,6 +30,8 @@ h4 {
 	 -webkit-text-fill-color:  rgb(0, 0, 0);
 	
 }
+
+
 /*	article h4 { width: 800px;*/
 /*	            height: 40px;*/
 /*	            padding: 30px;*/
