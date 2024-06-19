@@ -12,7 +12,9 @@
 
 		<h1>会員登録</h1>
 		<hr>
-		[[${error}]]
+		<th:block th:each="error:${error}">
+			[[${error}]]
+		</th:block>
 		<form action="/account/add" method="post">
 			名前：<input type="text" name="name" th:value="${name}" maxlength="60" required><br>
 
@@ -26,9 +28,11 @@
 				required><br>
 
 			[[${emailError}]]メールアドレス：<input type="email" name="email" th:value="${email}" maxlength="256" required><br>
+			[[${reEmailError}]]確認用メールアドレス：<input type="email" name="reEmail" maxlength="256" required><br>
 
 			パスワード：<input type="password" name="password" placeholder="8文字以上20文字以内" minlength="8" maxlength="20"
 				required><br>
+			[[${rePasswordError}]]確認用パスワード：<input type="password" name="rePassword" placeholder="8文字以上20文字以内" minlength="8" maxlength="20" required><br>
 			<input type="submit" value="CREATE" class="rg">
 <!--			登録-->
 		</form>
