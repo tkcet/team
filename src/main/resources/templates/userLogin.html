@@ -15,12 +15,13 @@
 	<br>
 	[[${error}]]
 	<form action="/account/login" method="post">
-		<div class="m">メールアドレス：</div><input type="email" name="email" placeholder="email" maxlength="256" required><br>
-		<div class="pas">パスワード：<input type="password" name="password" placeholder="password" maxlength="20" required>
+		メールアドレス：<input type="email" name="email" placeholder="email" maxlength="256" required><br>
+		パスワード：<input type="password" name="password" placeholder="password" maxlength="20" required><br>
+		<br>
 		<input type="submit" value="LOGIN" class="log">
 
 	</form>
-
+    <br>
 	<a href="/account/add">新規登録はこちら</a>
     <!--		Create account-->
 	<footer th:replace="footer"></footer>

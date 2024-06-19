@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Marina Bay Sunads 登録内容確認</title>
-	<link rel="stylesheet" type="text/css" href="/userAddAccount.css">
+	<link rel="stylesheet" type="text/css" href="/userReserve.css">
 </head>
 
 <body>
@@ -24,14 +24,14 @@
 		<input type="hidden" name="tel" th:value="${tel}">
 		<input type="hidden" name="email" th:value="${email}">
 		<input type="hidden" name="password" th:value="${password}">
-
-		<input type="submit" value="CREATE" class="rsv">
+        <br>
+		<input type="submit" value="CREATE" class="rsv"><br>
                             <!--	登録完了-->
-		<span>　　　</span>
-		<a th:href="|/account/add?name=${name}&gender=${gender}&address=${address}&tel=${tel}&email=${email}|">戻る</a>
+        <!--		<span>　　　</span>-->
+		<a th:href="|/account/add?name=${name}&gender=${gender}&address=${address}&tel=${tel}&email=${email}|">戻る</a><br>
+        <br>
 	</form>
-
-	<br><br>
+	<br>
 	<a href="/account/login">ホームページへ</a>
 
 	<footer th:replace="footer"></footer>
