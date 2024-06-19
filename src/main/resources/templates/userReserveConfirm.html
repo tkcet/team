@@ -3,7 +3,8 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Marina Bay sunads 予約確認</title>
+	<title>Marina Bay Sunas 予約確認</title>
+	<link rel="stylesheet" type="text/css" href="/userReserve.css">
 </head>
 
 <body>
@@ -30,7 +31,8 @@
 		<h3>合計金額：\[[${order.totalPrice}]]
 			<input type="hidden" name="totalPrice" th:value="${order.totalPrice}">
 		</h3>
-		<input type="submit" value="予約完了"><br>
+		<input type="submit" value="RESERVE" class="rsv"><br><br>
+　　　　　　　　　　　　　　　　<!--予約完了-->
 		<a href="/user/Reserve">戻る</a>
 		<a href="/user/logout">ログアウト</a>
 	</form>
