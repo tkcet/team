@@ -14,8 +14,8 @@ import lombok.Data;
 public class Room {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "room_id")
-	private Integer roomId;
+	@Column(name = "room_no")
+	private Integer roomNo;
 	private Integer price;
 	@Column(name = "deletion_flag")
 	private Integer deletionFlag;
@@ -24,8 +24,8 @@ public class Room {
 
 	}
 
-	public Room(Integer roomId, Integer price, Integer deletionFlag) {
-		this.roomId = roomId;
+	public Room(Integer roomNo, Integer price, Integer deletionFlag) {
+		this.roomNo = roomNo;
 		this.price = price;
 		this.deletionFlag = deletionFlag;
 	}

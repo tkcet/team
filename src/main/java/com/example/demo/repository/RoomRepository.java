@@ -1,7 +1,6 @@
 package com.example.demo.repository;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -11,8 +10,11 @@ import com.example.demo.entity.Room;
 
 @Repository
 public interface RoomRepository extends JpaRepository<Room, Integer> {
-	public abstract Optional<Room> findByRoomId(Integer roomId);
+	public abstract List<Room> findByRoomNo(Integer roomNo);
 
 	@Query(value = "SELECT room_no FROM room", nativeQuery = true)
 	public abstract List<Integer> findRoom();
+	
+	@Query(value = "SELECT price FROM room WHERE room_no = ?", nativeQuery = true)
+	public abstract Integer findPrice(Integer roomPrice);
 }
