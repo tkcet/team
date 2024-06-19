@@ -56,6 +56,7 @@ public class AccountController {
 			return "userLogin";
 		}
 		loginAccount.setName(account.getName());
+		loginAccount.setEmail(account.getEmail());
 
 		return "userHome";
 	}
@@ -93,7 +94,7 @@ public class AccountController {
 		int errorCount = 0;
 
 		Optional<Account> record = accountRepository.findByEmail(email);
-		
+
 		List<String> error = new ArrayList<>();
 
 		if (!email.matches(".*" + "@" + ".*") || !record.isEmpty()) {
@@ -113,7 +114,7 @@ public class AccountController {
 			String rePasswordError = "s";
 			error.add(rePasswordError);
 			errorCount++;
-					}
+		}
 
 		model.addAttribute("name", name);
 		model.addAttribute("gender", gender);

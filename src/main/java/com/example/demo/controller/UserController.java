@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.entity.Account;
 import com.example.demo.entity.Order;
 import com.example.demo.entity.Room;
+import com.example.demo.model.LoginAccount;
 import com.example.demo.repository.AccountRepository;
 import com.example.demo.repository.OrderRepository;
 import com.example.demo.repository.RoomRepository;
@@ -26,8 +28,8 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-	//	@Autowired
-	//	Account account;
+	@Autowired
+	LoginAccount loginAccount;
 
 	@Autowired
 	HttpSession session;
@@ -209,7 +211,9 @@ public class UserController {
 
 	@GetMapping("/archive")
 	public String archive(Model model) {
-		List<Order> list = orderRepository.findByAccountId(1);
+		Optional<Account> record = accountRepository.findByEmail(loginAccount.getEmail());
+		Account account = record.get();
+		List<Order> list = orderRepository.findByAccountId(account.getAccountId());
 
 		model.addAttribute("list", list);
 

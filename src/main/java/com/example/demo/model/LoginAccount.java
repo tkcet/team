@@ -9,6 +9,7 @@ import lombok.Data;
 @SessionScope
 public class LoginAccount {
 	private String name;
+	private String email;
 
 	public LoginAccount(String name) {
 		this.name = name;

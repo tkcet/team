@@ -9,14 +9,12 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.entity.Account;
 
 @Repository
-public interface AccountRepository extends JpaRepository<Account, Integer>{
-Optional<Account> findByEmailAndPassword(String email, String password);
+public interface AccountRepository extends JpaRepository<Account, Integer> {
+	Optional<Account> findByEmailAndPassword(String email, String password);
 
-Optional<Account> findByEmail(String email);
+	Optional<Account> findByEmail(String email);
 
-//adminController
-List<Account> findByDeletionFlag(Integer deletionFlag);
-
-
+	//adminController
+	List<Account> findByDeletionFlag(Integer deletionFlag);
 
 }
