@@ -4,68 +4,68 @@
 <head>
 	<meta charset="UTF-8">
 	<title>顧客情報変更</title>
+
+	<link rel="stylesheet" type="text/css" href="/admin.css">
 </head>
 
 <body>
-	<h1>管理者用</h1>
-	<h3>変更する顧客情報</h3>
+	<div style="text-align: center;">
+		<h1>管理者用</h1>
+		<h3>変更する顧客情報</h3>
 
-	<form action="/admin/update" method="post">
-		[[${emailError}]]
-		<table border="1">
-			<tr>
-				<th>顧客ID</th>
-				<td>[[${account.accountId}]]<input type="hidden" name="accountId" th:value="${account.accountId}"></td>
-			</tr>
-			<tr>
-				<th>名前</th>
-				<td><input type="text" name="name" th:value="${account.name}" maxlength="60" required></td>
-			</tr>
-			<tr>
-				<th>性別</th>
-				<td><input type="radio" name="gender" value="men" th:checked="${account.gender=='men'}">男性
-					<input type="radio" name="gender" value="women" th:checked="${account.gender=='women'}">女性
-					<input type="radio" name="gender" value="else" th:checked="${account.gender=='else'}">その他
-				</td>
-			</tr>
-			<tr>
-				<th>住所</th>
-				<td><input type="text" name="address" th:value="${account.address}"></td>
-			</tr>
-			<tr>
-				<th>電話番号</th>
-				<td><input type="text" name="tel" th:value="${account.tel}"></td>
-			</tr>
-			<tr>
-				<th>メールアドレス</th>
-				<td><input type="text" name="email" th:value="${account.email}"></td>
-			</tr>
-			<tr>
-				<th>更新者</th>
-				<td><input type="text" name="updater"></td>
-			</tr>
-		</table>
-		<input type="submit" value="変更">
-	</form>
+		<form action="/admin/update" method="post">
+			[[${emailError}]]
+			<table border="1">
+				<tr>
+					<th>顧客ID</th>
+					<td>[[${account.accountId}]]<input type="hidden" name="accountId" th:value="${account.accountId}">
+					</td>
+				</tr>
+				<tr>
+					<th>名前</th>
+					<td><input type="text" name="name" th:value="${account.name}" maxlength="60" required></td>
+				</tr>
+				<tr>
+					<th>性別</th>
+					<td><input type="radio" name="gender" value="men" th:checked="${account.gender=='men'}">男性
+						<input type="radio" name="gender" value="women" th:checked="${account.gender=='women'}">女性
+						<input type="radio" name="gender" value="else" th:checked="${account.gender=='else'}">その他
+					</td>
+				</tr>
+				<tr>
+					<th>住所</th>
+					<td><input type="text" name="address" th:value="${account.address}"></td>
+				</tr>
+				<tr>
+					<th>電話番号</th>
+					<td><input type="text" name="tel" th:value="${account.tel}"></td>
+				</tr>
+				<tr>
+					<th>メールアドレス</th>
+					<td><input type="text" name="email" th:value="${account.email}"></td>
+				</tr>
+				<tr>
+					<th>更新者</th>
+					<td><input type="text" name="updater"></td>
+				</tr>
+			</table>
+			<input type="submit" value="変更">
+		</form>
 
-	<form action="/admin/delete" method="post">
-		<input type="hidden" name="accountId" th:value="${account.accountId}">
-		<table border="1">
-			<tr>
-				<th>更新者</th>
-				<td><input type="text" name="updater"></td>
-				<td><input type="submit" value="削除"></td>
-			</tr>
-			
-		</table>
-		
-	</form>
+		<form action="/admin/delete" method="post">
+			<input type="hidden" name="accountId" th:value="${account.accountId}">
+			<table border="1">
+				<tr>
+					<th>更新者</th>
+					<td><input type="text" name="updater"></td>
+					<td><input type="submit" value="削除"></td>
+				</tr>
 
+			</table>
 
+		</form>
 
-
-
-	<a href="/admin/top">管理者用トップページへ</a>
+		<a href="/admin/top">管理者用トップページへ</a>
 
 
 </body>

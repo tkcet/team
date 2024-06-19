@@ -4,6 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>顧客情報一覧</title>
+	<link rel="stylesheet" type="text/css" href="/admin.css">
 </head>
 
 <body>
@@ -26,7 +27,8 @@
 			<td>
 				<a th:href="|/admin/update/${accountAll.accountId}?accountId=${accountAll.accountId}|">
 					[[${accountAll.accountId}]]
-				</a></td>
+				</a>
+			</td>
 			<td>[[${accountAll.name}]]</td>
 			<td>[[${accountAll.gender}]]</td>
 			<td>[[${accountAll.email}]]</td>
