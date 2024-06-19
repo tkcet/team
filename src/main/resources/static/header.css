@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+body{
+	background-color:white;
+	text-align: center;
+}
+
+.home {
+	border:black;
+}
+
+.header2 {
+    font-size:  40px;       
+    margin:  20px;  
+    font-family:  serif;  
+    color:black;         
+}
+
+.header {
+    font-size:  40px;       
+    margin:  20px;  
+    font-family:  serif;  
+    color:black;         
+}
+
+.log {
+	color:rgb(255, 255, 255);
+	font-family:  Times New Roman;   
+	background-color: black;
+}
+a {
+	color: dimgray;
+	font-family:  serif; 
+	
+}
+
+
+
+
+
+

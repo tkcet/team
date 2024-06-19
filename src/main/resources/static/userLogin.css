@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+body{
+	background-color:white;
+	text-align: center;
+	font-family:  serif;
+}
+
+.h_4 {
+    font-size:  30px;       
+    margin:  10px;  
+    font-family:  Times New Roman; 
+    color:darkslategray;          
+}
+
+
+.log {
+	color:rgb(255, 255, 255);
+	font-family:  Times New Roman;   
+	background-color: black;
+}
+
+a {
+	color: dimgray;
+	font-family:  serif; 
+	
+}
+
+h4 {
+	 -webkit-text-fill-color:  rgb(0, 0, 0);
+	
+}
+/*	article h4 { width: 800px;*/
+/*	            height: 40px;*/
+/*	            padding: 30px;*/
+/*	            border: 2px rgb(0, 0, 255) solid;*/
+/*	            margin: 10px;*/
+/*	            -webkit-text-fill-color:  rgb(0, 0, 255);*/
+		
+/*	}*/
+
+
