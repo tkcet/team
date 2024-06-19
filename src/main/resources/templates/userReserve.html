@@ -19,10 +19,10 @@
 		<span style="color:red;">[[${error}]]</span>
 	</th:block>
 	<form action="/user/reserve" method="post" class="form">
-<!--		Arrival：<input type="date" name="date">～-->
-<!--	    Departure：<input type="date" name="date"><br>-->
-<!--		Room Number：<input type="text" name="room_no"><br>-->
-<!--		Guests Per Room：<input type="text" name="room_no"><br>-->
+		<!--		Arrival：<input type="date" name="date">～-->
+		<!--	    Departure：<input type="date" name="date"><br>-->
+		<!--		Room Number：<input type="text" name="room_no"><br>-->
+		<!--		Guests Per Room：<input type="text" name="room_no"><br>-->
 		チェックイン日：<input type="date" name="checkIn" required>～
 		チェックアウト日：<input type="date" name="checkOut" required><br>
 		お部屋番号：<input type="text" name="roomNo" maxlength="3">号室
@@ -35,13 +35,14 @@
 					<option value="5">5人</option>
 				</select>
 				<input type="submit" value="RESERVE" class="rsv"><br><br>
-<!--予約-->
+				<!--予約-->
 	</form>
 	<a href="/user/reserve">戻る</a>
 	<h2 style="text-align: center"><a th:href="|/user/reserve?month=${lastMonth}|" style="text-decoration: none;">◀</a>
 		　　　　　　　　　　　　　[[${month}]]月　　　　　　　　　　　　　
 		<a th:href="|/user/reserve?month=${nextMonth}|" style="text-decoration: none;">▶</a>
 	</h2>
+
 	<style type="text/css">
 		.diagonal tr:first-child th:first-child {
 			background-image: linear-gradient(to right top, transparent calc(50% - 0.5px), #eaeaea 50%, #eaeaea calc(50% + 0.5px), transparent calc(50% + 1px));
@@ -68,43 +69,7 @@
 				[[${day}]]
 			</td>
 		</tr>
-		<tr th:each="i : ${#numbers.sequence(0, 9)}">
-			<td th:text="${roomList[i]}" align="center"></td>
-			<span th:each="day:${#numbers.sequence(0,maxDay-1)}">
-				<span th:if="${roomEmpty[i][day]} eq 1">
-					<td width="30" align="center" style="background: #ff0000">
-					</td>
-				</span>
-				<span th:if="${roomEmpty[i][day]} ne 1">
-					<td width="30" align="center"></td>
-				</span>
-			</span>
-		</tr>
-		<tr>
-			<td></td>
-			<td width="30" align="center" th:each="day:${#numbers.sequence(1,maxDay)}">
-				[[${day}]]
-			</td>
-		</tr>
-		<tr th:each="i : ${#numbers.sequence(10, 19)}">
-			<td th:text="${roomList[i]}" align="center"></td>
-			<span th:each="day:${#numbers.sequence(0,maxDay-1)}">
-				<span th:if="${roomEmpty[i][day]} eq 1">
-					<td width="30" align="center" style="background: #ff0000">
-					</td>
-				</span>
-				<span th:if="${roomEmpty[i][day]} ne 1">
-					<td width="30" align="center"></td>
-				</span>
-			</span>
-		</tr>
-		<tr>
-			<td></td>
-			<td width="30" align="center" th:each="day:${#numbers.sequence(1,maxDay)}">
-				[[${day}]]
-			</td>
-		</tr>
-		<tr th:each="i : ${#numbers.sequence(20, 29)}">
+		<tr th:each="i : ${#numbers.sequence(Floor, Floor+9)}">
 			<td th:text="${roomList[i]}" align="center"></td>
 			<span th:each="day:${#numbers.sequence(0,maxDay-1)}">
 				<span th:if="${roomEmpty[i][day]} eq 1">
@@ -117,7 +82,7 @@
 			</span>
 		</tr>
 	</table>
-
+	<a th:href="|/user/reserve?floor=0|">2階</a>　<a th:href="|/user/reserve?floor=1|">3階</a>　<a th:href="|/user/reserve?floor=2|">5階</a>
 
 	<footer th:replace="footer"></footer>
 </body>

@@ -50,7 +50,8 @@ public class UserController {
 
 	@GetMapping("/reserve")
 	public String reserve(Model model,
-			@RequestParam(name = "month", required = false) Integer month) {
+			@RequestParam(name = "month", required = false) Integer month,
+			@RequestParam(name = "floor", required = false) Integer floor) {
 		List<Order> order = null;
 		LocalDate now = LocalDate.now();
 		Integer year = now.getYear();
@@ -98,6 +99,11 @@ public class UserController {
 		model.addAttribute("nextMonth", month + 1 > 12 ? 1 : month + 1);
 		model.addAttribute("maxDay", maxDay);
 		model.addAttribute("roomEmpty", roomEmpty);
+		Integer[] Floor = { 0, 1, 2 };
+		if (floor == null) {
+			floor = 0;
+		}
+		model.addAttribute("Floor", Floor[floor] * 10);
 
 		return "userReserve";
 
