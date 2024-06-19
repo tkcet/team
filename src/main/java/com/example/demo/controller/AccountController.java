@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,22 +81,40 @@ public class AccountController {
 	@PostMapping("/add")
 	public String add(
 			@RequestParam("name") String name,
-			@RequestParam(name="gender",defaultValue="") String gender,
+			@RequestParam(name = "gender", defaultValue = "") String gender,
 			@RequestParam("address") String address,
 			@RequestParam("tel") String tel,
 			@RequestParam("email") String email,
+			@RequestParam("reEmail") String reEmail,
 			@RequestParam("password") String password,
+			@RequestParam("rePassword") String rePassword,
 			Model model) {
 		System.out.println("account");
 		int errorCount = 0;
-			
-			Optional<Account> record = accountRepository.findByEmail(email);
-			
-			if (!email.matches(".*" +"@" + ".*")||!record.isEmpty()) {
-				model.addAttribute("emailError", "*");
-				errorCount ++;	
-			}
-			
+
+		Optional<Account> record = accountRepository.findByEmail(email);
+		
+		List<String> error = new ArrayList<>();
+
+		if (!email.matches(".*" + "@" + ".*") || !record.isEmpty()) {
+			model.addAttribute("emailError", "*");
+			errorCount++;
+		}
+		if (!email.equals(reEmail)) {
+			model.addAttribute("emailError", "*");
+			model.addAttribute("reEmailError", "*");
+			String reEmailError = "a";
+			error.add(reEmailError);
+			errorCount++;
+		}
+		if (!password.equals(rePassword)) {
+			model.addAttribute("passwordError", "*");
+			model.addAttribute("rePasswordError", "*");
+			String rePasswordError = "s";
+			error.add(rePasswordError);
+			errorCount++;
+					}
+
 		model.addAttribute("name", name);
 		model.addAttribute("gender", gender);
 		model.addAttribute("address", address);
@@ -102,10 +122,10 @@ public class AccountController {
 		model.addAttribute("email", email);
 		model.addAttribute("password", password);
 
-		if(errorCount != 0) {
-				model.addAttribute("error", "再入力する必要があります");
-				return "userAddAccount";
-			}
+		if (errorCount != 0) {
+			model.addAttribute("error", error);
+			return "userAddAccount";
+		}
 		return "userAddAccountConfirm";
 	}
 
