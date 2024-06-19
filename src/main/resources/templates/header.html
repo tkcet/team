@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>header</title>
-<link rel="stylesheet" type="text/css" href="/header.css">
+	<meta charset="UTF-8">
+	<title>header</title>
+	<link rel="stylesheet" type="text/css" href="/header.css">
 </head>
+
 <body>
 
-<h1>
-	<!--img src="../開発画像/header.jpg" -->
-	<a href="/items" class="suna"><img src="" class="header2">Marina Bay Sunas</a></h1>
+	<h1>
+		<!--img src="../開発画像/header.jpg" -->
+		<a href="/top" class="suna"><img src="" class="header2">Marina Bay Sunas</a>
+	</h1>
 
-<!--div class="logout"><a href="/logout" class="log">ログアウト</a>
+	<!--div class="logout"><a href="/logout" class="log">ログアウト</a>
 </div -->
-<div class="logout">
-<form action="" method="">
-<input type="submit" value="LOGOUT" class="log">
-</form>
-</div>
+	<div class="logout">
+		<form action="/logout" method="get">
+			<input type="submit" value="LOGOUT" class="log">
+		</form>
+	</div>
 </body>
+
 </html>
