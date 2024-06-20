@@ -15,10 +15,6 @@
 	<h2>[[${@loginAccount.name}]]様</h2>
 	<br>
 	<form action="/user/reserve/confirm" method="post">
-		アカウントID：[[${order.accountId}]]
-		<input type="hidden" name="accountId" th:value="${order.accountId}"><br>
-		予約番号：[[${order.ordersId}]]
-		<input type="hidden" name="ordersId" th:value="${order.ordersId}"><br>
 		部屋番号：[[${order.roomNo}]]
 		<input type="hidden" name="roomNo" th:value="${order.roomNo}">号室<br>
 		人数：[[${order.numberPeople}]]
@@ -33,8 +29,7 @@
 		</h3>
 		<input type="submit" value="RESERVE" class="rsv"><br><br>
 　　　　　　　　　　　　　　　　<!--予約完了-->
-		<a href="/user/Reserve">戻る</a>
-		<a href="/user/logout">ログアウト</a>
+		<a href="/user/reserve">戻る</a>
 	</form>
 
 	<footer th:replace="footer"></footer>

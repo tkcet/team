@@ -243,7 +243,6 @@ public class UserController {
 
 		totalPrice = roomRepository.findPrice(roomNo) * numberPeople
 				* (int) (ChronoUnit.DAYS.between(checkIn, checkOut));
-
 		Order order1 = new Order(ordersId, accountId, roomNo, numberPeople, checkIn, checkOut, totalPrice);
 
 		model.addAttribute("order", order1);
@@ -260,7 +259,8 @@ public class UserController {
 			@RequestParam(name = "checkIn", defaultValue = "") LocalDate checkIn,
 			@RequestParam(name = "checkOut", defaultValue = "") LocalDate checkOut,
 			@RequestParam(name = "totalPrice", defaultValue = "0") Integer totalPrice) {
-		Order order = new Order(ordersId, accountId, roomNo, numberPeople, checkIn, checkOut, totalPrice, 0);
+		Order order = new Order(ordersId, accountRepository.findByEmail(loginAccount.getEmail()).get().getAccountId(),
+				roomNo, numberPeople, checkIn, checkOut, totalPrice, 0);
 		Order order1 = orderRepository.saveAndFlush(order);
 
 		model.addAttribute("message", "予約を承りました");
@@ -318,9 +318,9 @@ public class UserController {
 				roomEmpty[i][j] = 0;
 			}
 		}
-
+		accountId = accountRepository.findByEmail(loginAccount.getEmail()).get().getAccountId();
 		for (int i = 0; i < 30; i++) {
-			orderList = orderRepository.findOrders(roomNo);
+			orderList = orderRepository.findOrdersExceptAccountId(roomNo, accountId);
 			for (int j = 0; j < 31; j++) {
 				for (Order o : orderList) {
 					// 月を跨がない予約
@@ -389,10 +389,12 @@ public class UserController {
 					error.add("予約が埋まっています");
 					model.addAttribute("error", error);
 
-					return "userReserve";
+					return "redirect:/user/archive";
 				}
 			}
 		}
+		totalPrice = roomRepository.findPrice(roomNo) * numberPeople
+				* (int) (ChronoUnit.DAYS.between(checkIn, checkOut));
 		Order order = new Order(ordersId, accountId, roomNo, numberPeople, checkIn, checkOut, totalPrice, 0);
 		Order order1 = orderRepository.saveAndFlush(order);
 

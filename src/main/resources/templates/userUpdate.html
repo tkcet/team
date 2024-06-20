@@ -15,7 +15,7 @@
 	<h2>[[${@loginAccount.name}]]様、変更内容をご入力ください。</h2>
 	<br>
 	<form action="/user/update" method="post">
-		予約番号：[[${order.ordersId}]]"><br>
+		予約番号：[[${order.ordersId}]]<input type="hidden" name="ordersId" th:value="${order.ordersId}"><br>
 		部屋番号：<input type="text" name="roomNo" th:value="${order.roomNo}" maxlength="3">号室<br>
 		人数：<select name="numberPeople" required>
 			<option value="1" th:selected="${order.numberPeople==1}">1人</option>
@@ -28,7 +28,7 @@
 		チェックアウト日：<input type="date" name="checkOut" th:value="${order.checkOut}"><br><br>
 		<hr>
 		<input type="submit" value="CHANGE RESERVATION" class="rsv"><br>
-　　　　　　　　　　　　　　　　　<!--	予約変更-->
+　　　　　　　　　　　　　　　　　<a href="/user/archive">戻る</a>
 	</form>
 
 	<footer th:replace="footer"></footer>
