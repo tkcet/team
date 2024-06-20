@@ -1,0 +1,50 @@
+@charset "UTF-8";
+body{
+	background-color:white;
+	text-align: center;
+    font-family: serif; 
+    font-size: 10px;
+    width: 80%;
+    margin: 30px auto;
+    
+}
+
+.h3 a{
+  display: inline-block;
+  color:rgb(0, 0, 0);
+  font-size:120%;
+  text-decoration:none;
+  transition: .3s;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
+.h3 a:hover{
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.welcome {
+	font-size: 25px;
+	font-family:  serif; 
+	
+	
+}
+.h1 {
+    font-size:  30px;       
+    margin:  40px;  
+    font-family:  serif; 
+    color: rgb(0, 0, 0);          
+}
+
+.form {
+	font-family: serif; 
+    color:rgb(0, 0, 0);    
+}
+.rsv {
+	color:rgb(255, 255, 255);
+	font-family:  Lucida Console;   
+	background-color: black;
+
+}
+

@@ -12,7 +12,7 @@ body{
 .header2 {
     font-size:  40px;       
     margin:  20px;  
-    font-family:  serif;  
+    font-family: serif ;  
     color:black;         
 }
 .mypage {
@@ -28,8 +28,12 @@ body{
 
 .log {
 	color:rgb(255, 255, 255);
-	font-family:  Lucida Console;   
+	font-family:  Courier;   
 	background-color: black;
+	
+}
+.h1 {
+	font-size: 40px;
 }
 a {
 	color: dimgray;
@@ -37,7 +41,78 @@ a {
 	
 }
 
+.button {
+    background-color: rgb(0, 0, 0);
+    box-shadow: 0 1px 4px rgb(247, 152, 23);
+    color:rgb(255, 255, 255);
+    display: inline-block;
+    text-decoration: none;
+    transition: .3s;
+    font-family:  Courier;  
+    background-image: linear-gradient(45deg, rgb(0, 0, 255) 0%, rgb(255, 128, 255) 100%);
+    transition: .4s;
+    font-weight: bold;
+    text-decoration: none;
+    
+}
 
+.button:hover {
+    box-shadow: 0px 12px 24px rgb(64, 0, 128);
+    transform: translateY(-4px);
+}
+
+/* ナビゲーションメニュー */
+.nav-menu {
+  background-color: rgb(255, 255, 255); /* メニューの背景色 */
+  color: #fff; /* メニューテキストの色 */
+  
+}
+
+.menu-list {
+  display: flex;
+  justify-content: center; /* メニューアイテムを中央揃えに */
+  width:1000px;
+}
+.menu-item {
+  border-left: 1px solid rgb(0, 0, 0); /* メニューアイテムの左ボーダー */
+  position: relative;
+}
+.menu-item:last-child {
+  border-right: 1px solid rgb(0, 0, 0); /* 最後のメニューアイテムの右ボーダー */
+}
+
+/* メニューアイテムのホバースタイル */
+.menu-item:hover .drop-menu-list {
+  opacity: 1; /* 不透明度を最大に */
+  transition: opacity .3s, visibility .3s; /* アニメーション設定 */
+  visibility: visible; /* 下層メニューを表示 */
+}
+
+.menu-item a {
+  align-items: center;
+  color: rgb(0, 0, 0); /* メニューアイテム内のリンクテキストの色 */
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  text-decoration: none; /* リンクの下線を非表示 */
+  width: 120px;
+}
+
+/* ドロップダウンメニュー */
+.drop-menu {
+  position: relative;
+}
+.drop-menu-list {
+  background-color: rgb(255, 255, 255); /* ドロップダウンメニューの背景色 */
+  left: 0;
+/*  opacity: 0;  不透明度を最小に */
+  position: absolute;
+  top: 100%;
+  transition: opacity .3s, visibility .3s; /* アニメーション設定 */
+  visibility: hidden; /* 下層メニューを非表示 */
+  width: max-content;
+  z-index: 1;
+}
 
 
 
