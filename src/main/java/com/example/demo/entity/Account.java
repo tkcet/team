@@ -51,7 +51,7 @@ public class Account {
 		this.password = password;
 		this.deletionFlag = deletionFlag;
 	}
-
+    
 
 
 	public Account(String name, String gender, String address, String tel, String email,
@@ -84,5 +84,20 @@ public class Account {
 		this.deletionFlag = deletionFlag;
 	}
 	
-	
+	public Account(String tel, String email,String password) {
+		this.tel = tel;
+		this.email = email;
+		this.password = password;
+	}
+
+
+
+	public Account(Integer accountId, String tel, String email, String password,Integer deletionFlag) {
+		super();
+		this.accountId = accountId;
+		this.tel = tel;
+		this.email = email;
+		this.password = password;
+		this.deletionFlag = deletionFlag;
+	}
 }
