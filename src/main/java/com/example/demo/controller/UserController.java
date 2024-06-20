@@ -112,6 +112,7 @@ public class UserController {
 	@PostMapping("/reserve")
 	public String reserve(Model model,
 			@RequestParam(name = "month", required = false) Integer month,
+			@RequestParam(name = "floor", required = false) Integer floor,
 			@RequestParam(name = "ordersId", defaultValue = "") Integer ordersId,
 			@RequestParam(name = "accountId", defaultValue = "") Integer accountId,
 			@RequestParam(name = "roomNo", defaultValue = "0") Integer roomNo,
@@ -166,6 +167,11 @@ public class UserController {
 		model.addAttribute("nextMonth", month + 1 > 12 ? 1 : month + 1);
 		model.addAttribute("maxDay", maxDay);
 		model.addAttribute("roomEmpty", roomEmpty);
+		Integer[] Floor = { 0, 1, 2 };
+		if (floor == null) {
+			floor = 0;
+		}
+		model.addAttribute("Floor", Floor[floor] * 10);
 
 		int count = 0;
 		List<String> error = new ArrayList<>();
@@ -173,8 +179,53 @@ public class UserController {
 			error.add("チェックイン・チェックアウトの日を入力してください");
 			count++;
 		}
+
+		Integer[] booking = new Integer[31];
+
+		for (int i = 0; i < 31; i++) {
+			booking[i] = 0;
+		}
+		if (roomNo == 0) {
+			Integer day1 = checkIn.getDayOfMonth() - 1;
+			Integer day2 = checkOut.getDayOfMonth() - 1;
+			for (int i = day1; i <= day2; i++) {
+				booking[i] = 1;
+			}
+			for (int i = 0; i < 30; i++) {
+				int judge = 0;
+				for (int j = 0; j < 31; j++) {
+					if (roomEmpty[i][j] == 1 && booking[j] == 1) {
+						judge++;
+					}
+					if (judge == 0) {
+						roomNo = roomList.get(i);
+						break;
+					}
+				}
+			}
+		}
+
+		int bookingRoom = 100;
+		for (int i = 0; i < 30; i++) {
+			if (roomNo == roomList.get(i)) {
+				bookingRoom = i;
+			}
+		}
+		if (bookingRoom != 100) {
+			for (int i = 0; i < 31; i++) {
+				if (roomEmpty[bookingRoom][i] == 1 && booking[i] == 1) {
+					error.add("予約が埋まっています");
+					return "userReserve";
+				}
+			}
+		}
+
 		if (ChronoUnit.DAYS.between(checkIn, checkOut) == 0) {
 			error.add("チェックインとチェックアウトが同じ日です");
+			count++;
+		}
+		if ((int) (ChronoUnit.DAYS.between(checkIn, checkOut)) < 0) {
+			error.add("チェックインがチェックアウトより前です");
 			count++;
 		}
 		List<Room> room = roomRepository.findByRoomNo(roomNo);
