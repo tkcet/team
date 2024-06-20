@@ -57,11 +57,12 @@ public class AdminController {
 		}
 
 		if (accountAll == null) {
-			model.addAttribute("error", "「IDもしくはパスワードが一致しませんでした");
+			model.addAttribute("error", "IDもしくはパスワードが一致しませんでした");
 			return "adminLogin";
 		}
 		session.setAttribute("accountId", accountId);
 		session.setAttribute("password", password);
+		loginAdmin.setPassword(password);
 
 		model.addAttribute("accountAll", accountAll);
 		return "adminHome";
@@ -78,7 +79,7 @@ public class AdminController {
 
 	}
 
-	@GetMapping("/update/{acccountId}")
+	@GetMapping("/update")
 	public String home(
 			@RequestParam("accountId") Integer accountId,
 			Model model) {
