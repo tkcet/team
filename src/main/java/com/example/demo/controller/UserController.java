@@ -185,29 +185,29 @@ public class UserController {
 		for (int i = 0; i < 31; i++) {
 			booking[i] = 0;
 		}
+		Integer day1 = checkIn.getDayOfMonth() - 1;
+		Integer day2 = checkOut.getDayOfMonth() - 1;
+		for (int i = day1; i <= day2; i++) {
+			booking[i] = 1;
+		}
 		if (roomNo == 0) {
-			Integer day1 = checkIn.getDayOfMonth() - 1;
-			Integer day2 = checkOut.getDayOfMonth() - 1;
-			for (int i = day1; i <= day2; i++) {
-				booking[i] = 1;
-			}
 			for (int i = 0; i < 30; i++) {
 				int judge = 0;
 				for (int j = 0; j < 31; j++) {
 					if (roomEmpty[i][j] == 1 && booking[j] == 1) {
 						judge++;
 					}
-					if (judge == 0) {
-						roomNo = roomList.get(i);
-						break;
-					}
+				}
+				if (judge == 0) {
+					roomNo = roomList.get(i);
+					break;
 				}
 			}
 		}
 
 		int bookingRoom = 100;
 		for (int i = 0; i < 30; i++) {
-			if (roomNo == roomList.get(i)) {
+			if (roomNo == (int) roomList.get(i)) {
 				bookingRoom = i;
 			}
 		}
