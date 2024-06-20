@@ -215,6 +215,8 @@ public class UserController {
 			for (int i = 0; i < 31; i++) {
 				if (roomEmpty[bookingRoom][i] == 1 && booking[i] == 1) {
 					error.add("予約が埋まっています");
+					model.addAttribute("error", error);
+
 					return "userReserve";
 				}
 			}

@@ -16,7 +16,7 @@
 	<p>ようこそ！[[${@loginAccount.name}]]様</p>
 	<br>
 	<th:block th:if="${error}">
-		<span style="color:red;">[[${error}]]</span>
+		<span th:each="err:${error}" style="color:red;">[[${err}]]<span>
 	</th:block>
 	<form action="/user/reserve" method="post" class="form">
 <!--		Arrival：<input type="date" name="date">～-->
