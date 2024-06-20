@@ -38,8 +38,7 @@ public class CheckLoginAspect {
 //			+ "execution(* com.example.demo.controller.UserController.*(..)) "
 ////			+ "execution(* com.example.demo.controller.OrderController.*(..))"
 //			)
-	@Around("execution(* com.example.demo.controller.AccountController.add(..)) ||"
-			+ "execution(* com.example.demo.controller.UserController.*(..))"
+	@Around( "execution(* com.example.demo.controller.UserController.*(..))"
 			)
 	public Object checkLogin(ProceedingJoinPoint jp) throws Throwable {
 
