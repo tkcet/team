@@ -199,4 +199,10 @@ public class AccountController {
 
 		return "redirect:/account/login";
 	}
+	
+	@GetMapping("")
+	public String sample(){
+		
+		return "sample";
+	}
 }
