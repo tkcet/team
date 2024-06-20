@@ -124,7 +124,7 @@ public class AccountController {
 		model.addAttribute("tel", tel);
 		model.addAttribute("email", email);
 		model.addAttribute("password", password);
-		
+
 		for (String e : errors) {
 			System.out.println(e);
 		}
@@ -194,15 +194,27 @@ public class AccountController {
 			return "userPasswordUpdate";
 		}
 
-		Account newAccount = new Account(record.get().getAccountId(), tel, email, newPassword, 0);
+		Integer accountId = account.getAccountId();
+		String name = account.getName();
+		String gender = account.getGender();
+		String address = account.getAddress();
+		LocalDate createDate = account.getCreateDate();
+		String creater = account.getCreater();
+		LocalDate updateDate = account.getUpdateDate();
+		String updater = account.getUpdater();
+		Integer versionNo = account.getVersionNo();
+
+		Account newAccount = new Account(accountId, name, gender, address, tel, email, newPassword, createDate, creater,
+				updateDate, updater, versionNo, 0);
+
 		accountRepository.saveAndFlush(newAccount);
 
 		return "redirect:/account/login";
 	}
-	
+
 	@GetMapping("")
-	public String sample(){
-		
+	public String sample() {
+
 		return "sample";
 	}
 }
