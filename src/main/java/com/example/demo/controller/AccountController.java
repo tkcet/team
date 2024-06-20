@@ -150,4 +150,50 @@ public class AccountController {
 
 		return "redirect:/account/login";
 	}
+	
+	@GetMapping("/passwordUpdate")
+	public String modifyPage() {
+
+		return "userPasswordUpdate";
+	}
+
+	@PostMapping("/passwordUpdate")
+	public String modify(
+			@RequestParam("tel") String tel,
+			@RequestParam("email") String email,
+			@RequestParam("newPassword") String newPassword,
+			@RequestParam("reNewPassword") String reNewPassword,
+
+			Model model) {
+
+		Optional<Account> record = accountRepository.findByEmailAndTel(email, tel);
+
+		List<String> error = new ArrayList<>();
+
+		if (!newPassword.equals(reNewPassword)) {
+			model.addAttribute("passwordError", "*");
+			model.addAttribute("rePasswordError", "*");
+			String rePasswordError = "s";
+			error.add(rePasswordError);
+
+		}
+
+		if (record.isEmpty()) {
+			model.addAttribute("error", "メールアドレスもしくは電話番号が一致しませんでした");
+			return "userPaswordUpdate";
+		}
+		Account account = record.get();
+		if (account.getDeletionFlag() == 1) {
+			model.addAttribute("error", "メールアドレスもしくは電話番号が一致しませんでした");
+			return "userPasswordUpdate";
+		}
+
+		Account newAccount = new Account(record.get().getAccountId(), tel, email, newPassword, 0);
+		System.out.println("-----------------------");
+		accountRepository.saveAndFlush(newAccount);
+		System.out.println("-----------------------");
+		model.addAttribute("newPassword", newPassword);
+
+		return "redirect:/account/login";
+	}
 }

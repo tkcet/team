@@ -13,6 +13,9 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
 	Optional<Account> findByEmailAndPassword(String email, String password);
 
 	Optional<Account> findByEmail(String email);
+	
+	Optional<Account> findByEmailAndTel(String email, String tel);
+
 
 	//adminController
 	List<Account> findByDeletionFlag(Integer deletionFlag);
