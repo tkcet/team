@@ -150,7 +150,7 @@ public class AccountController {
 
 		return "redirect:/account/login";
 	}
-	
+
 	@GetMapping("/passwordUpdate")
 	public String modifyPage() {
 
@@ -175,13 +175,13 @@ public class AccountController {
 			model.addAttribute("rePasswordError", "*");
 			String rePasswordError = "s";
 			error.add(rePasswordError);
-
 		}
 
 		if (record.isEmpty()) {
 			model.addAttribute("error", "メールアドレスもしくは電話番号が一致しませんでした");
-			return "userPaswordUpdate";
+			return "userPasswordUpdate";
 		}
+
 		Account account = record.get();
 		if (account.getDeletionFlag() == 1) {
 			model.addAttribute("error", "メールアドレスもしくは電話番号が一致しませんでした");
@@ -189,10 +189,7 @@ public class AccountController {
 		}
 
 		Account newAccount = new Account(record.get().getAccountId(), tel, email, newPassword, 0);
-		System.out.println("-----------------------");
 		accountRepository.saveAndFlush(newAccount);
-		System.out.println("-----------------------");
-		model.addAttribute("newPassword", newPassword);
 
 		return "redirect:/account/login";
 	}
