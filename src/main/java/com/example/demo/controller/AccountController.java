@@ -95,24 +95,26 @@ public class AccountController {
 
 		Optional<Account> record = accountRepository.findByEmail(email);
 
-		List<String> error = new ArrayList<>();
+		List<String> errors = new ArrayList<>();
 
 		if (!email.matches(".*" + "@" + ".*") || !record.isEmpty()) {
 			model.addAttribute("emailError", "*");
+			String EmailError = "メールアドレスが重複しています";
+			errors.add(EmailError);
 			errorCount++;
 		}
 		if (!email.equals(reEmail)) {
 			model.addAttribute("emailError", "*");
 			model.addAttribute("reEmailError", "*");
-			String reEmailError = "a";
-			error.add(reEmailError);
+			String reEmailError = "メールアドレスと確認用メールアドレスが一致しません";
+			errors.add(reEmailError);
 			errorCount++;
 		}
 		if (!password.equals(rePassword)) {
 			model.addAttribute("passwordError", "*");
 			model.addAttribute("rePasswordError", "*");
-			String rePasswordError = "s";
-			error.add(rePasswordError);
+			String rePasswordError = "パスワードと確認用パスワードが一致しません";
+			errors.add(rePasswordError);
 			errorCount++;
 		}
 
@@ -123,8 +125,12 @@ public class AccountController {
 		model.addAttribute("email", email);
 		model.addAttribute("password", password);
 
+		for (String e : errors) {
+			System.out.println(e);
+		}
+
 		if (errorCount != 0) {
-			model.addAttribute("error", error);
+			model.addAttribute("errors", errors);
 			return "userAddAccount";
 		}
 		return "userAddAccountConfirm";
@@ -150,7 +156,7 @@ public class AccountController {
 
 		return "redirect:/account/login";
 	}
-	
+
 	@GetMapping("/passwordUpdate")
 	public String modifyPage() {
 
@@ -175,25 +181,40 @@ public class AccountController {
 			model.addAttribute("rePasswordError", "*");
 			String rePasswordError = "s";
 			error.add(rePasswordError);
-
 		}
 
 		if (record.isEmpty()) {
 			model.addAttribute("error", "メールアドレスもしくは電話番号が一致しませんでした");
-			return "userPaswordUpdate";
+			return "userPasswordUpdate";
 		}
+
 		Account account = record.get();
 		if (account.getDeletionFlag() == 1) {
 			model.addAttribute("error", "メールアドレスもしくは電話番号が一致しませんでした");
 			return "userPasswordUpdate";
 		}
 
-		Account newAccount = new Account(record.get().getAccountId(), tel, email, newPassword, 0);
-		System.out.println("-----------------------");
+		Integer accountId = account.getAccountId();
+		String name = account.getName();
+		String gender = account.getGender();
+		String address = account.getAddress();
+		LocalDate createDate = account.getCreateDate();
+		String creater = account.getCreater();
+		LocalDate updateDate = account.getUpdateDate();
+		String updater = account.getUpdater();
+		Integer versionNo = account.getVersionNo();
+
+		Account newAccount = new Account(accountId, name, gender, address, tel, email, newPassword, createDate, creater,
+				updateDate, updater, versionNo, 0);
+
 		accountRepository.saveAndFlush(newAccount);
-		System.out.println("-----------------------");
-		model.addAttribute("newPassword", newPassword);
 
 		return "redirect:/account/login";
+	}
+
+	@GetMapping("")
+	public String sample() {
+
+		return "sample";
 	}
 }
