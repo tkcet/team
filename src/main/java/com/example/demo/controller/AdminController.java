@@ -80,7 +80,7 @@ public class AdminController {
 	}
 
 	@GetMapping("/update")
-	public String home(
+	public String modufyPage(
 			@RequestParam("accountId") Integer accountId,
 			Model model) {
 		Account account = accountRepository.findById(accountId).get();
