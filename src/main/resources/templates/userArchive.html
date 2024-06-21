@@ -22,17 +22,17 @@
 		チェックアウト日：<span th:text="${order.checkOut}"></span>
 		<h3>合計金額：\<span th:text="${order.totalPrice}"></span></h3>
 		<form th:action="|/user/update/${order.ordersId}|" method="get">
-			<input type="submit" value="CHANGE RESERVATION" class="rsv"><br>
+			<input type="submit" value="MODIFY YOUR RESERVATION" class="log"><br>
                                     <!--予約を変更-->
 		</form>
 		<form th:action="|/user/delete/${order.ordersId}|" method="post">
-			<input type="submit" value="CANCEL"  class="rsv"><br>
+			<input type="submit" value="CANCEL YOUR RESERVATION" class="log"><br>
                                     <!--予約をキャンセル-->
 		</form>
 		<br>
 		<hr>
 	</span>
-	<a href="/user/logout">ログアウト</a><br>
+	<a href="/account/login">ログアウト</a><br>
 	<a href="/user/reserve">新規予約へ</a>
 	<a href="/user/home">ホームページへ</a>
 
