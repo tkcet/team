@@ -45,16 +45,12 @@ public class AccountController {
 			@RequestParam("password") String password,
 			Model model) {
 		Optional<Account> record = accountRepository.findByEmailAndPassword(email, password);
-		System.out.println(record);
-		if (record.isEmpty()) {
-			model.addAttribute("error", "メールアドレスもしくはパスワードが一致しませんでした");
-			return "userLogin";
-		}
 		Account account = record.get();
-		if (account.getDeletionFlag() == 1) {
+		if (record.isEmpty() || account.getDeletionFlag() == 1) {
 			model.addAttribute("error", "メールアドレスもしくはパスワードが一致しませんでした");
 			return "userLogin";
 		}
+
 		loginAccount.setName(account.getName());
 		loginAccount.setEmail(account.getEmail());
 
@@ -63,18 +59,9 @@ public class AccountController {
 
 	@GetMapping("/add")
 	public String add(
-			@RequestParam(name = "name", defaultValue = "") String name,
-			@RequestParam(name = "gender", defaultValue = "") String gender,
-			@RequestParam(name = "address", defaultValue = "") String address,
-			@RequestParam(name = "tel", defaultValue = "") String tel,
-			@RequestParam(name = "email", defaultValue = "") String email,
-
+			@RequestParam(name = "gender", defaultValue = "men") String gender,
 			Model model) {
-		model.addAttribute("name", name);
 		model.addAttribute("gender", gender);
-		model.addAttribute("address", address);
-		model.addAttribute("tel", tel);
-		model.addAttribute("email", email);
 
 		return "userAddAccount";
 	}
@@ -90,8 +77,6 @@ public class AccountController {
 			@RequestParam("password") String password,
 			@RequestParam("rePassword") String rePassword,
 			Model model) {
-		System.out.println("account");
-		int errorCount = 0;
 
 		Optional<Account> record = accountRepository.findByEmail(email);
 
@@ -99,23 +84,17 @@ public class AccountController {
 
 		if (!email.matches(".*" + "@" + ".*") || !record.isEmpty()) {
 			model.addAttribute("emailError", "*");
-			String EmailError = "メールアドレスが重複しています";
-			errors.add(EmailError);
-			errorCount++;
+			errors.add("メールアドレスが重複しています");
 		}
 		if (!email.equals(reEmail)) {
 			model.addAttribute("emailError", "*");
 			model.addAttribute("reEmailError", "*");
-			String reEmailError = "メールアドレスと確認用メールアドレスが一致しません";
-			errors.add(reEmailError);
-			errorCount++;
+			errors.add("メールアドレスと確認用メールアドレスが一致しません");
 		}
 		if (!password.equals(rePassword)) {
 			model.addAttribute("passwordError", "*");
 			model.addAttribute("rePasswordError", "*");
-			String rePasswordError = "パスワードと確認用パスワードが一致しません";
-			errors.add(rePasswordError);
-			errorCount++;
+			errors.add("パスワードと確認用パスワードが一致しません");
 		}
 
 		model.addAttribute("name", name);
@@ -125,11 +104,7 @@ public class AccountController {
 		model.addAttribute("email", email);
 		model.addAttribute("password", password);
 
-		for (String e : errors) {
-			System.out.println(e);
-		}
-
-		if (errorCount != 0) {
+		if (errors.size() != 0) {
 			model.addAttribute("errors", errors);
 			return "userAddAccount";
 		}
@@ -152,7 +127,6 @@ public class AccountController {
 		account.setCreateDate(LocalDate.now());
 
 		accountRepository.save(account);
-		System.out.println(password);
 
 		return "redirect:/account/login";
 	}
@@ -174,7 +148,6 @@ public class AccountController {
 
 		Optional<Account> record = accountRepository.findByEmailAndTel(email, tel);
 
-		List<String> error = new ArrayList<>();
 
 		if (!newPassword.equals(reNewPassword)) {
 			model.addAttribute("passwordError", "*");
@@ -182,31 +155,17 @@ public class AccountController {
 			model.addAttribute("error","パスワードと確認用パスワードが一致しません");
 			return "userPasswordUpdate";
 		}
-		if (record.isEmpty()) {
-			model.addAttribute("error", "メールアドレスもしくは電話番号が一致しませんでした");
-			return "userPasswordUpdate";
-		}
-
 		Account account = record.get();
-		if (account.getDeletionFlag() == 1) {
+		if (record.isEmpty()||account.getDeletionFlag() == 1) {
 			model.addAttribute("error", "メールアドレスもしくは電話番号が一致しませんでした");
 			return "userPasswordUpdate";
 		}
 
-		Integer accountId = account.getAccountId();
-		String name = account.getName();
-		String gender = account.getGender();
-		String address = account.getAddress();
-		LocalDate createDate = account.getCreateDate();
-		String creater = account.getCreater();
-		LocalDate updateDate = account.getUpdateDate();
-		String updater = account.getUpdater();
-		Integer versionNo = account.getVersionNo();
+		account.setUpdateDate(LocalDate.now());
 
-		Account newAccount = new Account(accountId, name, gender, address, tel, email, newPassword, createDate, creater,
-				updateDate, updater, versionNo, 0);
+		account.setVersionNo(account.getVersionNo()+1);
 
-		accountRepository.saveAndFlush(newAccount);
+		accountRepository.saveAndFlush(account);
 
 		return "redirect:/account/login";
 	}
@@ -216,4 +175,5 @@ public class AccountController {
 
 		return "sample";
 	}
+	
 }

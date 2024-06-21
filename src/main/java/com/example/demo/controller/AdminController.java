@@ -60,8 +60,7 @@ public class AdminController {
 			model.addAttribute("error", "IDもしくはパスワードが一致しませんでした");
 			return "adminLogin";
 		}
-		session.setAttribute("accountId", accountId);
-		session.setAttribute("password", password);
+		loginAdmin.setAccountId(accountId);
 		loginAdmin.setName(account.getName());
 		loginAdmin.setPassword(password);
 
@@ -72,10 +71,8 @@ public class AdminController {
 	@GetMapping("/top")
 	public String top(
 			Model model) {
-		Integer accountId = (Integer) session.getAttribute("accountId");
-		String password = (String) session.getAttribute("password");
-		System.out.println(accountId);
-		System.out.println(password);
+		Integer accountId = loginAdmin.getAccountId();
+		String password = loginAdmin.getPassword();
 		return login(accountId, password, model);
 
 	}
@@ -85,7 +82,6 @@ public class AdminController {
 			@RequestParam("accountId") Integer accountId,
 			Model model) {
 		Account account = accountRepository.findById(accountId).get();
-		System.out.println(account);
 		model.addAttribute("account", account);
 		return "adminUpdateExecute";
 	}
@@ -101,59 +97,32 @@ public class AdminController {
 			Model model) {
 
 		int errorCount = 0;
-		System.out.println(errorCount);
 		Optional<Account> record = accountRepository.findByEmail(email);
-		
-		if(!record.isEmpty()) {
+
+		if (!record.isEmpty()) {
 			Account account = record.get();
-			if(account.getAccountId()!=accountId) {
+			if (account.getAccountId() != accountId) {
 				model.addAttribute("emailError", "メールアドレスが重複しています");
 				errorCount++;
 			}
-			
-		}
 
-		if (!email.matches(".*" + "@" + ".*") ) {
-			model.addAttribute("emailError", "メールアドレスに@は必須です");
-			errorCount++;
 		}
-		
-		System.out.println(errorCount);
-
 		Account account = accountRepository.findById(accountId).get();
+
 		if (errorCount != 0) {
 
-			model.addAttribute("error", "再入力する必要があります");
 			model.addAttribute("account", account);
 			return "adminUpdateExecute";
 		}
 
-		System.out.println("aaa");
-
-		String password = account.getPassword();
-		LocalDate createDate = account.getCreateDate();
-		String creater = account.getCreater();
-		//		Integer versionNo1 = account.getVersionNo()+1;
-		Integer versionNo = account.getVersionNo() + 1;
-		account.setVersionNo(versionNo);
-		Integer deletionFlag = account.getDeletionFlag();
-
-		String updater = loginAdmin.getName();
-		
+		account.setVersionNo(account.getVersionNo() + 1);
+		account.setUpdater(loginAdmin.getName());
 		account.setUpdateDate(LocalDate.now());
-		LocalDate updateDate = account.getUpdateDate();
-		Account newAccount = new Account(accountId, name, gender, address, tel, email, password, createDate, creater,
-				updateDate, updater, versionNo, deletionFlag);
 
-		System.out.println("ccc");
+		accountRepository.save(account);
 
-		accountRepository.save(newAccount);
+		model.addAttribute("newAccount", account);
 
-		//途中
-		model.addAttribute("newAccount", newAccount);
-
-		//return "redirect:/admin/login";
-		//		return login(3, "himitu", model);
 		return "adminUpdateConfirm";
 	}
 
@@ -167,8 +136,6 @@ public class AdminController {
 		account.setUpdateDate(LocalDate.now());
 		accountRepository.save(account);
 
-		//		return "";
-		//		return login(3, "himitu", model);
 		return "redirect:/admin/top";
 	}
 }
