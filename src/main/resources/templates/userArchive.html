@@ -15,19 +15,37 @@
 	<hr>
 	<span th:each="order:${list}">
 		<br>
-		予約番号：<span th:text="${order.ordersId}"></span><br>
-		部屋番号：<span th:text="${order.roomNo}"></span>号室<br>
-		人数：<span th:text="${order.numberPeople}"></span>人<br>
-		チェックイン日：<span th:text="${order.checkIn}"></span>～<br>
-		チェックアウト日：<span th:text="${order.checkOut}"></span>
+		<table>
+			<tr>
+				<th>予約番号</th>
+				<td><span th:text="${order.ordersId}"></span></td>
+			</tr>
+			<tr>
+				<th>部屋番号</th>
+				<td><span th:text="${order.roomNo}"></span>号室</td>
+			</tr>
+			<tr>
+				<th>人数</th>
+				<td><span th:text="${order.numberPeople}"></span>人</td>
+			</tr>
+			<tr>
+				<th>チェックイン日</th>
+				<td><span th:text="${order.checkIn}"></span>～</td>
+			</tr>
+			<tr>
+				<th>チェックアウト日</th>
+				<td><span th:text="${order.checkOut}"></span></td>
+			</tr>
+		</table>
 		<h3>合計金額：\<span th:text="${order.totalPrice}"></span></h3>
+
 		<form th:action="|/user/update/${order.ordersId}|" method="get">
 			<input type="submit" value="MODIFY YOUR RESERVATION" class="log"><br>
-                                    <!--予約を変更-->
+			<!--予約を変更-->
 		</form>
 		<form th:action="|/user/delete/${order.ordersId}|" method="post">
 			<input type="submit" value="CANCEL YOUR RESERVATION" class="log"><br>
-                                    <!--予約をキャンセル-->
+			<!--予約をキャンセル-->
 		</form>
 		<br>
 		<hr>

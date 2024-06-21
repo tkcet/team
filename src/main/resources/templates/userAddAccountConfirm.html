@@ -3,36 +3,56 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Marina Bay Sunads 登録内容確認</title>
+	<title>Marina Bay Sunads Sign Up</title>
 	<link rel="stylesheet" type="text/css" href="/userReserve.css">
 </head>
 
 <body>
 	<header th:replace="header"></header>
 
-	<h1>登録内容確認</h1>
+	<h1>Sign Up</h1>
 	<hr>
 	<form action="/account/add/confirm" method="post">
-		名前：[[${name}]]<br>
-		性別：[[${gender}]]<br>
-		住所：[[${address}]]<br>
-		電話番号：[[${tel}]]<br>
-		メールアドレス：[[${email}]]<br>
+		<table border="1">
+			<tr>
+				<th>名前</th>
+				<td>[[${name}]]</td>
+			</tr>
+
+			<tr>
+				<th>性別</th>
+				<td>[[${gender}]]</td>
+			</tr>
+			<tr>
+				<th>住所</th>
+				<td>[[${address}]]</td>
+			</tr>
+			<tr>
+				<th>電話番号</th>
+				<td>[[${tel}]]</td>
+			</tr>
+			<tr>
+				<th>メールアドレス</th>
+				<td>[[${email}]]</td>
+			</tr>
+		</table>
+
 		<input type="hidden" name="name" th:value="${name}">
 		<input type="hidden" name="gender" th:value="${gender}">
 		<input type="hidden" name="address" th:value="${address}">
 		<input type="hidden" name="tel" th:value="${tel}">
 		<input type="hidden" name="email" th:value="${email}">
 		<input type="hidden" name="password" th:value="${password}">
-        <br>
-		<input type="submit" value="CREATE" class="rsv"><br>
-                            <!--	登録完了-->
-        <!--		<span>　　　</span>-->
-		<a th:href="|/account/add?name=${name}&gender=${gender}&address=${address}&tel=${tel}&email=${email}|">戻る</a><br>
-        <br>
+
+		<input type="submit" value="CREATE" class="rsv">
+
+		<br>
+		<br>
+
+		<a
+			th:href="|/account/add?name=${name}&gender=${gender}&address=${address}&tel=${tel}&email=${email}|">BACK</a><br>
+		<br>
 	</form>
-	<br>
-	<a href="/account/login">ホームページへ</a>
 
 	<footer th:replace="footer"></footer>
 </body>

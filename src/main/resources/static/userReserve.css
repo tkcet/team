@@ -29,6 +29,13 @@ a {
 	color: dimgray;
 	font-family:  serif; 
 }
+
+table {
+	border-collapse: separate;
+	border-color: grey;
+    margin-left: auto;
+    margin-right: auto;
+}
 	
 
 .diagonal tr:first-child th:first-child {

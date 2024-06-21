@@ -9,22 +9,28 @@
 
 <body>
 	<header th:replace="header"></header>
-    
-    <h4 class="h_4">Login</h4>
+
+	<h4 class="h_4">Login</h4>
 	<hr>
 	<br>
 	[[${error}]]
 	<form action="/account/login" method="post">
-		メールアドレス：<input type="email" name="email" placeholder="email" maxlength="256" required><br>
-		パスワード：<input type="password" name="password" placeholder="password" maxlength="20" required><br>
-		<br>
+		<table>
+			<tr>
+				<th>メールアドレス</th>
+				<td><input type="email" name="email" placeholder="email" maxlength="256" required></td>
+			</tr>
+			<tr>
+				<th>パスワード</th>
+				<td><input type="password" name="password" placeholder="password" maxlength="20" required></td>
+			</tr>
+		</table>
 		<input type="submit" value="LOGIN" class="log">
-
 	</form>
-    <br>
-	<a href="/account/add">新規登録はこちら</a><br>
-	<a href="/account/passwordUpdate">パスワード変更はこちらから</a>
-    <!--		Create account-->
+	<br>
+	<a href="/account/add">Sign Up</a><br>
+	<a href="/account/passwordUpdate">Change Pass</a>
+	<!--		Create account-->
 	<footer th:replace="footer"></footer>
 </body>
 
