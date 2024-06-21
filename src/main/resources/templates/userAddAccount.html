@@ -12,7 +12,7 @@
 
 		<h1>会員登録</h1>
 		<hr>
-		<th:block th:each="error:${error}">
+		<th:block th:each="error:${errors}">
 			[[${error}]]
 		</th:block>
 		<form action="/account/add" method="post">
