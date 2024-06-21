@@ -34,15 +34,15 @@
 				</tr>
 				<tr>
 					<th>住所</th>
-					<td><input type="text" name="address" th:value="${account.address}"></td>
+					<td><input type="text" name="address" th:value="${account.address}" maxlength="150" required></td>
 				</tr>
 				<tr>
 					<th>電話番号</th>
-					<td><input type="tel" name="tel" th:value="${account.tel}"></td>
+					<td><input type="tel" name="tel" th:value="${account.tel}" placeholder="ハイフン無し" minlength="10" maxlength="11"></td>
 				</tr>
 				<tr>
 					<th>メールアドレス</th>
-					<td><input type="email" name="email" th:value="${account.email}" required></td>
+					<td><input type="email" name="email" th:value="${account.email}" maxlength="256" required></td>
 				</tr>
 
 				<tr>
@@ -70,7 +70,7 @@
 		</table>
 		<br>
 
-			<a href="/admin/top">管理者用トップページへ</a>
+			<a href="/admin/top">顧客情報一覧画面へ</a>
 
 </body>
 
