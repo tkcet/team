@@ -43,8 +43,8 @@
 		　　　　　　　　　　　　　[[${month}]]月　　　　　　　　　　　　　
 		<a th:href="|/user/reserve?month=${nextMonth}&year=${nextYear}|" style="text-decoration: none;">▶</a>
 	</h2>
-	<a th:href="|/user/reserve?floor=0|">2F</a>　<a th:href="|/user/reserve?floor=1|">3F</a>　<a
-		th:href="|/user/reserve?floor=2|">5F</a>
+	<a th:href="|/user/reserve?month=${month}&floor=0|">2F</a>　<a th:href="|/user/reserve?month=${month}&floor=1|">3F</a>　<a
+		th:href="|/user/reserve?month=${month}&floor=2|">5F</a>
 	<style type="text/css">
 		.diagonal tr:first-child th:first-child {
 			background-image: linear-gradient(to right top, transparent calc(50% - 0.5px), #eaeaea 50%, #eaeaea calc(50% + 0.5px), transparent calc(50% + 1px));
