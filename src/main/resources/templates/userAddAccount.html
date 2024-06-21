@@ -10,34 +10,35 @@
 <body>
 	<header th:replace="header"></header>
 
-		<h1>会員登録</h1>
-		<hr>
-		<th:block th:each="error:${error}">
-			[[${error}]]
-		</th:block>
-		<form action="/account/add" method="post">
-			名前：<input type="text" name="name" th:value="${name}" maxlength="60" required><br>
+	<h1>会員登録</h1>
+	<hr>
+	<th:block th:if="${error}">
+		<span th:each="err:${error}" style="color:red;">[[${err}]]<span>
+	</th:block>
+	<form action="/account/add" method="post">
+		名前：<input type="text" name="name" th:value="${name}" maxlength="60" required><br>
 
-			性別：<input type="radio" name="gender" value="men" th:checked="${gender=='men'}">男性
-			<input type="radio" name="gender" value="women" th:checked="${gender=='women'}">女性
-			<input type="radio" name="gender" value="else" th:checked="${gender=='else'}">その他<br>
+		性別：<input type="radio" name="gender" value="men" th:checked="${gender=='men'}">男性
+		<input type="radio" name="gender" value="women" th:checked="${gender=='women'}">女性
+		<input type="radio" name="gender" value="else" th:checked="${gender=='else'}">その他<br>
 
-			住所：<input type="text" name="address" th:value="${address}" maxlength="150" required><br>
+		住所：<input type="text" name="address" th:value="${address}" maxlength="150" required><br>
 
-			電話番号：<input type="tel" name="tel" th:value="${tel}" placeholder="ハイフン無し" minlength="10" maxlength="11"
-				required><br>
+		電話番号：<input type="tel" name="tel" th:value="${tel}" placeholder="ハイフン無し" minlength="10" maxlength="11"
+			required><br>
 
-			[[${emailError}]]メールアドレス：<input type="email" name="email" th:value="${email}" maxlength="256" required><br>
-			[[${reEmailError}]]確認用メールアドレス：<input type="email" name="reEmail" maxlength="256" required><br>
+		[[${emailError}]]メールアドレス：<input type="email" name="email" th:value="${email}" maxlength="256" required><br>
+		[[${reEmailError}]]確認用メールアドレス：<input type="email" name="reEmail" maxlength="256" required><br>
 
-			パスワード：<input type="password" name="password" placeholder="8文字以上20文字以内" minlength="8" maxlength="20"
-				required><br>
-			[[${rePasswordError}]]確認用パスワード：<input type="password" name="rePassword" placeholder="8文字以上20文字以内" minlength="8" maxlength="20" required><br>
-			<input type="submit" value="CREATE" class="log">
-<!--			登録-->
-		</form>
+		パスワード：<input type="password" name="password" placeholder="8文字以上20文字以内" minlength="8" maxlength="20"
+			required><br>
+		[[${rePasswordError}]]確認用パスワード：<input type="password" name="rePassword" placeholder="8文字以上20文字以内" minlength="8"
+			maxlength="20" required><br>
+		<input type="submit" value="CREATE" class="log">
+		<!--			登録-->
+	</form>
 
-		<footer th:replace="footer"></footer>
+	<footer th:replace="footer"></footer>
 </body>
 
 </html>

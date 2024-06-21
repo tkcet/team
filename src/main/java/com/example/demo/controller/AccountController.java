@@ -179,10 +179,9 @@ public class AccountController {
 		if (!newPassword.equals(reNewPassword)) {
 			model.addAttribute("passwordError", "*");
 			model.addAttribute("rePasswordError", "*");
-			String rePasswordError = "s";
-			error.add(rePasswordError);
+			model.addAttribute("error","パスワードと確認用パスワードが一致しません");
+			return "userPasswordUpdate";
 		}
-
 		if (record.isEmpty()) {
 			model.addAttribute("error", "メールアドレスもしくは電話番号が一致しませんでした");
 			return "userPasswordUpdate";
