@@ -89,6 +89,9 @@ public class UserController {
 							roomEmpty[i][j] = 1;
 						}
 					}
+					if (o.getCheckIn().getMonthValue() < month && month < o.getCheckOut().getMonthValue()) {
+						roomEmpty[i][j] = 1;
+					}
 				}
 			}
 		}
@@ -139,14 +142,14 @@ public class UserController {
 			order = orderRepository.findOrders(roomList.get(i));
 			for (int j = 0; j < 31; j++) {
 				for (Order o : order) {
-					// 月を跨がない予約
+					// 月を跨がない予約表示
 					if (month == o.getCheckIn().getMonthValue() && month == o.getCheckOut().getMonthValue()) {
 						if ((o.getCheckIn().getDayOfMonth() - 1) <= j
 								&& j <= (o.getCheckOut().getDayOfMonth() - 1)) {
 							roomEmpty[i][j] = 1;
 						}
 					}
-					// 月を跨ぐ予約
+					// 月を跨ぐ予約表示
 					if (month == o.getCheckIn().getMonthValue() && month != o.getCheckOut().getMonthValue()) {
 						if ((o.getCheckIn().getDayOfMonth() - 1) <= j && j < 31) {
 							roomEmpty[i][j] = 1;
@@ -156,6 +159,9 @@ public class UserController {
 						if (0 <= j && j <= (o.getCheckOut().getDayOfMonth() - 1)) {
 							roomEmpty[i][j] = 1;
 						}
+					}
+					if (o.getCheckIn().getMonthValue() < month && month < o.getCheckOut().getMonthValue()) {
+						roomEmpty[i][j] = 1;
 					}
 				}
 			}
@@ -180,6 +186,21 @@ public class UserController {
 			count++;
 		}
 
+		List<Order> order2 = orderRepository.findOrders(roomNo);
+		for (Order o : order2) {
+			if ((int) (ChronoUnit.DAYS.between(checkIn, o.getCheckIn())) > 0
+					&& (int) (ChronoUnit.DAYS.between(checkOut, o.getCheckIn())) > 0) {
+
+			} else if ((int) (ChronoUnit.DAYS.between(checkIn, o.getCheckOut())) < 0
+					&& (int) (ChronoUnit.DAYS.between(checkOut, o.getCheckOut())) < 0) {
+
+			} else {
+				error.add("予約が埋まっています");
+				model.addAttribute("error", error);
+
+				return "userReserve";
+			}
+		}
 		Integer[] booking = new Integer[31];
 
 		for (int i = 0; i < 31; i++) {
@@ -205,22 +226,22 @@ public class UserController {
 			}
 		}
 
-		int bookingRoom = 100;
-		for (int i = 0; i < 30; i++) {
-			if (roomNo == (int) roomList.get(i)) {
-				bookingRoom = i;
-			}
-		}
-		if (bookingRoom != 100) {
-			for (int i = 0; i < 31; i++) {
-				if (roomEmpty[bookingRoom][i] == 1 && booking[i] == 1) {
-					error.add("予約が埋まっています");
-					model.addAttribute("error", error);
-
-					return "userReserve";
-				}
-			}
-		}
+		//		int bookingRoom = 100;
+		//		for (int i = 0; i < 30; i++) {
+		//			if (roomNo == (int) roomList.get(i)) {
+		//				bookingRoom = i;
+		//			}
+		//		}
+		//		if (bookingRoom != 100) {
+		//			for (int i = 0; i < 31; i++) {
+		//				if (roomEmpty[bookingRoom][i] == 1 && booking[i] == 1) {
+		//					error.add("予約が埋まっています");
+		//					model.addAttribute("error", error);
+		//
+		//					return "userReserve";
+		//				}
+		//			}
+		//		}
 
 		if (ChronoUnit.DAYS.between(checkIn, checkOut) == 0) {
 			error.add("チェックインとチェックアウトが同じ日です");
@@ -340,6 +361,9 @@ public class UserController {
 						if (0 <= j && j <= (o.getCheckOut().getDayOfMonth() - 1)) {
 							roomEmpty[i][j] = 1;
 						}
+					}
+					if (o.getCheckIn().getMonthValue() < month && month < o.getCheckOut().getMonthValue()) {
+						roomEmpty[i][j] = 1;
 					}
 				}
 			}
