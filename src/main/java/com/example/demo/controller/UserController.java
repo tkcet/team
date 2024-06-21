@@ -375,7 +375,23 @@ public class UserController {
 			error.add("チェックイン・チェックアウトの日を入力してください");
 			count++;
 		}
+		
+		List<Order> order2 = orderRepository.findOrders(roomNo);
+		for (Order o : order2) {
+			if ((int) (ChronoUnit.DAYS.between(checkIn, o.getCheckIn())) > 0
+					&& (int) (ChronoUnit.DAYS.between(checkOut, o.getCheckIn())) > 0) {
 
+			} else if ((int) (ChronoUnit.DAYS.between(checkIn, o.getCheckOut())) < 0
+					&& (int) (ChronoUnit.DAYS.between(checkOut, o.getCheckOut())) < 0) {
+
+			} else {
+				error.add("予約が埋まっています");
+				model.addAttribute("error", error);
+
+				return "userReserve";
+			}
+		}
+		
 		Integer[] booking = new Integer[31];
 
 		for (int i = 0; i < 31; i++) {
@@ -401,22 +417,22 @@ public class UserController {
 			}
 		}
 
-		int bookingRoom = 100;
-		for (int i = 0; i < 30; i++) {
-			if (roomNo == (int) roomList.get(i)) {
-				bookingRoom = i;
-			}
-		}
-		if (bookingRoom != 100) {
-			for (int i = 0; i < 31; i++) {
-				if (roomEmpty[bookingRoom][i] == 1 && booking[i] == 1) {
-					error.add("予約が埋まっています");
-					model.addAttribute("error", error);
-
-					return "redirect:/user/archive";
-				}
-			}
-		}
+//		int bookingRoom = 100;
+//		for (int i = 0; i < 30; i++) {
+//			if (roomNo == (int) roomList.get(i)) {
+//				bookingRoom = i;
+//			}
+//		}
+//		if (bookingRoom != 100) {
+//			for (int i = 0; i < 31; i++) {
+//				if (roomEmpty[bookingRoom][i] == 1 && booking[i] == 1) {
+//					error.add("予約が埋まっています");
+//					model.addAttribute("error", error);
+//
+//					return "redirect:/user/archive";
+//				}
+//			}
+//		}
 		totalPrice = roomRepository.findPrice(roomNo) * numberPeople
 				* (int) (ChronoUnit.DAYS.between(checkIn, checkOut));
 		Order order = new Order(ordersId, accountId, roomNo, numberPeople, checkIn, checkOut, totalPrice, 0);
