@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<title>Marina Bay Sunas 予約変更</title>
 	<link rel="stylesheet" type="text/css" href="/userReserve.css">
-	
+
 </head>
 
 <body>
@@ -15,21 +15,42 @@
 	<h2>[[${@loginAccount.name}]]様、変更内容をご入力ください。</h2>
 	<br>
 	<form action="/user/update" method="post">
-		予約番号：[[${order.ordersId}]]<input type="hidden" name="ordersId" th:value="${order.ordersId}"><br>
-		部屋番号：<input type="text" name="roomNo" th:value="${order.roomNo}" maxlength="3">号室<br>
-		人数：<select name="numberPeople" required>
-			<option value="1" th:selected="${order.numberPeople==1}">1人</option>
-			<option value="2" th:selected="${order.numberPeople==2}">2人</option>
-			<option value="3" th:selected="${order.numberPeople==3}">3人</option>
-			<option value="4" th:selected="${order.numberPeople==4}">4人</option>
-			<option value="5" th:selected="${order.numberPeople==5}">5人</option>
-		</select>
-		チェックイン日：<input type="date" name="checkIn" th:value="${order.checkIn}">～<br>
-		チェックアウト日：<input type="date" name="checkOut" th:value="${order.checkOut}"><br><br>
+		<table border="1">
+			<tr>
+				<th>予約番号</th>
+				<input type="hidden" name="ordersId" th:value="${order.ordersId}">
+				<td>[[${order.ordersId}]]</td>
+			</tr>
+			<tr>
+				<th>部屋番号</th>
+				<td><input type="number" name="roomNo" th:value="${order.roomNo}" maxlength="3">号室</td>
+			</tr>
+			<tr>
+				<th>人数</th>
+				<td><select name="numberPeople" required>
+						<option value="1" th:selected="${order.numberPeople==1}">1人</option>
+						<option value="2" th:selected="${order.numberPeople==2}">2人</option>
+						<option value="3" th:selected="${order.numberPeople==3}">3人</option>
+						<option value="4" th:selected="${order.numberPeople==4}">4人</option>
+						<option value="5" th:selected="${order.numberPeople==5}">5人</option>
+					</select></td>
+			</tr>
+			<tr>
+				<th>チェックイン日</th>
+				<td><input type="date" name="checkIn" th:value="${order.checkIn}">～</td>
+			</tr>
+			<tr>
+				<th>チェックアウト日</th>
+				<td><input type="date" name="checkOut" th:value="${order.checkOut}"></td>
+			</tr>
+
+		</table>
 		<hr>
-		<input type="submit" value="CHANGE RESERVATION" class="rsv"><br>
-　　　　　　　　　　　　　　　　　<a href="/user/archive">戻る</a>
+		<input type="submit" value="CHANGE RESERVATION" class="rsv">
 	</form>
+	<br><br>
+	<a href="/user/archive">BACK</a>
+
 
 	<footer th:replace="footer"></footer>
 </body>

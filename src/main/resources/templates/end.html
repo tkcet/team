@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
@@ -15,13 +14,12 @@
 	<h2>[[${@loginAccount.name}]]様、[[${message}]]。</h2>
 	<br>
 
-
-
-	<a href="/user/logout">ログアウト</a><br>
-	<a href="/user/reserve">新規予約へ</a>
 	<a href="/user/home">ホテルトップページへ</a>
+	<pr>　</pr>
+	<a href="/user/logout">ログアウト</a>
 
-    <footer th:replace="footer"></footer>
+
+	<footer th:replace="footer"></footer>
 </body>
 
 </html>
