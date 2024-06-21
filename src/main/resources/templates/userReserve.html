@@ -75,7 +75,7 @@
 			<td th:text="${roomList[i]}" align="center"></td>
 			<span th:each="day:${#numbers.sequence(0,maxDay-1)}">
 				<span th:if="${roomEmpty[i][day]} eq 1">
-					<td width="30" align="center" style="background: #ff0000">
+					<td width="30" align="center" style="background: rgb(128, 128, 128)">
 					</td>
 				</span>
 				<span th:if="${roomEmpty[i][day]} ne 1">
