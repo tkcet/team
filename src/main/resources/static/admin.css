@@ -5,7 +5,10 @@ body{
 	text-align: center;
 	font-family:  serif;
 }
-
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .log {
 	color:rgb(255, 255, 255);
