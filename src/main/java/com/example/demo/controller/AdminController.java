@@ -62,6 +62,7 @@ public class AdminController {
 		}
 		session.setAttribute("accountId", accountId);
 		session.setAttribute("password", password);
+		loginAdmin.setName(account.getName());
 		loginAdmin.setPassword(password);
 
 		model.addAttribute("accountAll", accountAll);
@@ -97,7 +98,6 @@ public class AdminController {
 			@RequestParam("address") String address,
 			@RequestParam("tel") String tel,
 			@RequestParam("email") String email,
-			@RequestParam("updater") String updater,
 			Model model) {
 
 		int errorCount = 0;
@@ -138,6 +138,8 @@ public class AdminController {
 		account.setVersionNo(versionNo);
 		Integer deletionFlag = account.getDeletionFlag();
 
+		String updater = loginAdmin.getName();
+		
 		account.setUpdateDate(LocalDate.now());
 		LocalDate updateDate = account.getUpdateDate();
 		Account newAccount = new Account(accountId, name, gender, address, tel, email, password, createDate, creater,
@@ -158,11 +160,10 @@ public class AdminController {
 	@PostMapping("/delete")
 	public String delete(
 			@RequestParam("accountId") Integer accountId,
-			@RequestParam("updater") String updater,
 			Model model) {
 		Account account = accountRepository.findById(accountId).get();
 		account.setDeletionFlag(1);
-		account.setUpdater(updater);
+		account.setUpdater(loginAdmin.getName());
 		account.setUpdateDate(LocalDate.now());
 		accountRepository.save(account);
 
