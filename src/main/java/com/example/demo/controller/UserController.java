@@ -51,10 +51,11 @@ public class UserController {
 	@GetMapping("/reserve")
 	public String reserve(Model model,
 			@RequestParam(name = "month", required = false) Integer month,
+			@RequestParam(name = "year", required = false) Integer year,
 			@RequestParam(name = "floor", required = false) Integer floor) {
 		List<Order> order = null;
 		LocalDate now = LocalDate.now();
-		Integer year = now.getYear();
+		year = year != null ? year : now.getYear();
 		month = month != null ? month : now.getMonthValue();
 		LocalDate date = LocalDate.of(year, month, 1);
 		int maxDay = date.lengthOfMonth();
@@ -72,36 +73,61 @@ public class UserController {
 			order = orderRepository.findOrders(roomList.get(i));
 			for (int j = 0; j < 31; j++) {
 				for (Order o : order) {
-					// 月を跨がない予約
-					if (month == o.getCheckIn().getMonthValue() && month == o.getCheckOut().getMonthValue()) {
-						if ((o.getCheckIn().getDayOfMonth() - 1) <= j && j <= (o.getCheckOut().getDayOfMonth() - 1)) {
+					if (year == o.getCheckIn().getYear() && year == o.getCheckOut().getYear()) {
+						// 月を跨がない予約
+						if (month == o.getCheckIn().getMonthValue() && month == o.getCheckOut().getMonthValue()) {
+							if ((o.getCheckIn().getDayOfMonth() - 1) <= j
+									&& j <= (o.getCheckOut().getDayOfMonth() - 1)) {
+								roomEmpty[i][j] = 1;
+							}
+						}
+						// 月を跨ぐ予約
+						if (month == o.getCheckIn().getMonthValue() && month != o.getCheckOut().getMonthValue()) {
+							if ((o.getCheckIn().getDayOfMonth() - 1) <= j && j < 31) {
+								roomEmpty[i][j] = 1;
+							}
+						}
+						if (month != o.getCheckIn().getMonthValue() && month == o.getCheckOut().getMonthValue()) {
+							if (0 <= j && j <= (o.getCheckOut().getDayOfMonth() - 1)) {
+								roomEmpty[i][j] = 1;
+							}
+						}
+						if (o.getCheckIn().getMonthValue() < month && month < o.getCheckOut().getMonthValue()) {
 							roomEmpty[i][j] = 1;
 						}
-					}
-					// 月を跨ぐ予約
-					if (month == o.getCheckIn().getMonthValue() && month != o.getCheckOut().getMonthValue()) {
-						if ((o.getCheckIn().getDayOfMonth() - 1) <= j && j < 31) {
+					} else if (o.getCheckIn().getYear() < year && year == o.getCheckOut().getYear()) {
+						if (month < o.getCheckOut().getMonthValue()) {
 							roomEmpty[i][j] = 1;
 						}
-					}
-					if (month != o.getCheckIn().getMonthValue() && month == o.getCheckOut().getMonthValue()) {
-						if (0 <= j && j <= (o.getCheckOut().getDayOfMonth() - 1)) {
+						if (month == o.getCheckOut().getMonthValue()) {
+							if (0 <= j && j <= (o.getCheckOut().getDayOfMonth() - 1)) {
+								roomEmpty[i][j] = 1;
+							}
+						}
+					} else if (o.getCheckIn().getYear() == year && year < o.getCheckOut().getYear()) {
+						if (month > o.getCheckIn().getMonthValue()) {
 							roomEmpty[i][j] = 1;
 						}
-					}
-					if (o.getCheckIn().getMonthValue() < month && month < o.getCheckOut().getMonthValue()) {
-						roomEmpty[i][j] = 1;
+						if (month == o.getCheckIn().getMonthValue()) {
+							if ((o.getCheckIn().getDayOfMonth() - 1) <= j && j < 31) {
+								roomEmpty[i][j] = 1;
+							}
+						}
 					}
 				}
 			}
 		}
 
 		model.addAttribute("roomList", roomList);
+		model.addAttribute("year", year);
+		model.addAttribute("lastYear", month - 1 < 1 ? year - 1 : year);
+		model.addAttribute("nextYear", month + 1 > 12 ? year + 1 : year);
 		model.addAttribute("lastMonth", month - 1 < 1 ? 12 : month - 1);
 		model.addAttribute("month", month);
 		model.addAttribute("nextMonth", month + 1 > 12 ? 1 : month + 1);
 		model.addAttribute("maxDay", maxDay);
 		model.addAttribute("roomEmpty", roomEmpty);
+
 		Integer[] Floor = { 0, 1, 2 };
 		if (floor == null) {
 			floor = 0;
@@ -115,6 +141,7 @@ public class UserController {
 	@PostMapping("/reserve")
 	public String reserve(Model model,
 			@RequestParam(name = "month", required = false) Integer month,
+			@RequestParam(name = "year", required = false) Integer year,
 			@RequestParam(name = "floor", required = false) Integer floor,
 			@RequestParam(name = "ordersId", defaultValue = "") Integer ordersId,
 			@RequestParam(name = "accountId", defaultValue = "") Integer accountId,
@@ -125,7 +152,7 @@ public class UserController {
 			@RequestParam(name = "totalPrice", defaultValue = "0") Integer totalPrice) {
 		List<Order> order = null;
 		LocalDate now = LocalDate.now();
-		Integer year = now.getYear();
+		year = year != null ? year : now.getYear();
 		month = month != null ? month : now.getMonthValue();
 		LocalDate date = LocalDate.of(year, month, 1);
 		int maxDay = date.lengthOfMonth();
@@ -168,6 +195,9 @@ public class UserController {
 		}
 
 		model.addAttribute("roomList", roomList);
+		model.addAttribute("year", year);
+		model.addAttribute("lastYear", month - 1 < 1 ? year - 1 : year);
+		model.addAttribute("nextYear", month + 1 > 12 ? year + 1 : year);
 		model.addAttribute("lastMonth", month - 1 < 1 ? 12 : month - 1);
 		model.addAttribute("month", month);
 		model.addAttribute("nextMonth", month + 1 > 12 ? 1 : month + 1);
@@ -375,7 +405,7 @@ public class UserController {
 			error.add("チェックイン・チェックアウトの日を入力してください");
 			count++;
 		}
-		
+
 		List<Order> order2 = orderRepository.findOrders(roomNo);
 		for (Order o : order2) {
 			if ((int) (ChronoUnit.DAYS.between(checkIn, o.getCheckIn())) > 0
@@ -391,7 +421,7 @@ public class UserController {
 				return "userReserve";
 			}
 		}
-		
+
 		Integer[] booking = new Integer[31];
 
 		for (int i = 0; i < 31; i++) {
@@ -417,22 +447,22 @@ public class UserController {
 			}
 		}
 
-//		int bookingRoom = 100;
-//		for (int i = 0; i < 30; i++) {
-//			if (roomNo == (int) roomList.get(i)) {
-//				bookingRoom = i;
-//			}
-//		}
-//		if (bookingRoom != 100) {
-//			for (int i = 0; i < 31; i++) {
-//				if (roomEmpty[bookingRoom][i] == 1 && booking[i] == 1) {
-//					error.add("予約が埋まっています");
-//					model.addAttribute("error", error);
-//
-//					return "redirect:/user/archive";
-//				}
-//			}
-//		}
+		//		int bookingRoom = 100;
+		//		for (int i = 0; i < 30; i++) {
+		//			if (roomNo == (int) roomList.get(i)) {
+		//				bookingRoom = i;
+		//			}
+		//		}
+		//		if (bookingRoom != 100) {
+		//			for (int i = 0; i < 31; i++) {
+		//				if (roomEmpty[bookingRoom][i] == 1 && booking[i] == 1) {
+		//					error.add("予約が埋まっています");
+		//					model.addAttribute("error", error);
+		//
+		//					return "redirect:/user/archive";
+		//				}
+		//			}
+		//		}
 		totalPrice = roomRepository.findPrice(roomNo) * numberPeople
 				* (int) (ChronoUnit.DAYS.between(checkIn, checkOut));
 		Order order = new Order(ordersId, accountId, roomNo, numberPeople, checkIn, checkOut, totalPrice, 0);

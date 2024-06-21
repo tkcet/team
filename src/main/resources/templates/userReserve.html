@@ -38,9 +38,10 @@
 				<input type="submit" value="PROCEED" class="log"><br><br>
 <!--予約-->
 	</form>
-	<h2 style="text-align: center"><a th:href="|/user/reserve?month=${lastMonth}|" style="text-decoration: none;">◀</a>
+	[[${year}]]
+	<h2 style="text-align: center"><a th:href="|/user/reserve?month=${lastMonth}&year=${lastYear}|" style="text-decoration: none;">◀</a>
 		　　　　　　　　　　　　　[[${month}]]月　　　　　　　　　　　　　
-		<a th:href="|/user/reserve?month=${nextMonth}|" style="text-decoration: none;">▶</a>
+		<a th:href="|/user/reserve?month=${nextMonth}&year=${nextYear}|" style="text-decoration: none;">▶</a>
 	</h2>
 	<a th:href="|/user/reserve?floor=0|">2F</a>　<a th:href="|/user/reserve?floor=1|">3F</a>　<a
 		th:href="|/user/reserve?floor=2|">5F</a>
