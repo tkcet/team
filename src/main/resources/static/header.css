@@ -1,5 +1,4 @@
 @charset "UTF-8";
-
 body{
 	background-color:white;
 	text-align: center;
@@ -22,6 +21,10 @@ body{
     color:black;     
 }
 
+.qatar {
+	width: 950px;
+	
+}
 .inline {
     display:inline;
 }
@@ -34,6 +37,9 @@ body{
 }
 .h1 {
 	font-size: 40px;
+	position:  relative;                
+    z-index:  99;
+    color: white;
 }
 a {
 	color: dimgray;
@@ -41,20 +47,6 @@ a {
 	
 }
 
-.button {
-    background-color: rgb(0, 0, 0);
-    box-shadow: 0 1px 4px rgb(247, 152, 23);
-    color:rgb(255, 255, 255);
-    display: inline-block;
-    text-decoration: none;
-    transition: .3s;
-    font-family:  Courier;  
-    background-image: linear-gradient(45deg, rgb(0, 0, 255) 0%, rgb(255, 128, 255) 100%);
-    transition: .4s;
-    font-weight: bold;
-    text-decoration: none;
-    
-}
 
 .button:hover {
     box-shadow: 0px 12px 24px rgb(64, 0, 128);
@@ -65,6 +57,8 @@ a {
 .nav-menu {
   background-color: rgb(255, 255, 255); /* メニューの背景色 */
   color: #fff; /* メニューテキストの色 */
+  position:  relative;                /* 位置指定 */
+  z-index:  100;           
   
 }
 
@@ -111,9 +105,6 @@ a {
   transition: opacity .3s, visibility .3s; /* アニメーション設定 */
   visibility: hidden; /* 下層メニューを非表示 */
   width: max-content;
-  z-index: 1;
 }
-
-
 
 
