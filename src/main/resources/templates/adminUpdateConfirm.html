@@ -12,19 +12,33 @@
 	<h1>管理者用</h1>
 	<br>
 	<h3>以下の内容で顧客情報を変更しました。</h3>
-	<br>
-
-	顧客ID:[[${newAccount.accountId}]]
-	<br>
-	名前：[[${newAccount.name}]]
-	<br>
-	性別：[[${newAccount.gender}]]
-	<br>
-	住所：[[${newAccount.address}]]
-	<br>
-	電話番号：[[${newAccount.tel}]]
-	<br>
-	メールアドレス：[[${newAccount.email}]]
+	<table border="1">
+		<tr>
+			<th>顧客ID</th>
+			<td>[[${newAccount.accountId}]]</td>
+		</tr>
+		<tr>
+			<th>名前</th>
+			<td>[[${newAccount.name}]]</td>
+		</tr>
+		<tr>
+			<th>性別</th>
+			<td>[[${newAccount.gender}]]</td>
+		</tr>
+		<tr>
+			<th>住所</th>
+			<td>[[${newAccount.address}]]</td>
+		</tr>
+		<tr>
+			<th>電話番号</th>
+			<td>[[${newAccount.tel}]]</td>
+		</tr>
+		<tr>
+			<th>メールアドレス</th>
+			<td>[[${newAccount.email}]]</td>
+		</tr>
+	</table>
+	
 	<br>
 	<a href="/admin/top">顧客情報一覧画面へ</a>
 
