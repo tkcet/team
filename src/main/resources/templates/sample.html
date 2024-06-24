@@ -2,90 +2,192 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8">
+<meta charset="UTF-8">
 	<title>Marina Bay Sunas</title>
 	<link rel="stylesheet" type="text/css" href="/sample.css">
+	
+	<style type="text/css">
+		#photo {
+		    text-align: center;
+			width: 200px;
+			height: auto;
+            margin: 90px;
+            
+		}
+
+		#photo img {
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			position: absolute;
+			
+			
+		}
+	</style>
+	        
+<!--position: absolute;-->
+
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+
+	<script type="text/javascript">
+		$(function () {
+			var setImg = '#photo';
+			var fadeSpeed = 1600;
+			var switchDelay = 5000;
+
+			$(setImg).children('img').css({opacity: '0'});
+			$(setImg + ' img:first').stop().animate({opacity: '1', zIndex: '20'}, fadeSpeed);
+
+			setInterval(function () {
+				$(setImg + ' :first-child').animate({opacity: '0'}, fadeSpeed).next('img').animate({opacity: '1'}, fadeSpeed).end().appendTo(setImg);
+			}, switchDelay);
+		});
+	</script>
+	
+	
+	
+	
+	
 </head>
 
 <body>
 	<header th:replace="header"></header>
-		<br>
-		<br>
-		<br>
-<!--		<button onclick="location.href='/account/login'" class="button">LOGIN</button>-->
-<!--	     class="log"-->
-		
-		<br>
-		<br>
-		<br>
-		<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+    <br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<div id="photo">
+		<img src="/img/2_EDT_Rome1_15_RGB_V2-scaled.jpg">
+		<img src="/img/5_EDT_Rome1_20_RGB_V2.jpg">
+		<img src="/img/Tampa3_17c_RGB_V2-1-scaled.jpg">
+		<img src="/img/EDT_Madrid2_19_RGB_V2-scaled.jpg">
+		<img src="/img/Madrid_Pool-Night-scaled.jpg">
+	    <img src="/img/Kanai2_37a_RGB_V1.jpg">
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	
-		<div class="welcome">― WELCOME TO ―<br> 
+	<div class="welcome">― WELCOME TO ―<br>
 		A WORLD LIKE NO OTHER
 		<br><br>
-		</div>
+	</div>
 
-        <br>
+	<br>
 
-        <div class="h3"><a href="#">WHERE LUXURY UNFOLDS AT EVERY TURN</a></div>
-		<div>
-			賑やかな港区の中心部、三田地区に佇む高級リゾート「Marina Bay Sunas」へようこそ。<br>
-			洗練されたセンスと壮麗で豪奢な空間、そして隅々まで気配りの行き届いた最高級のサービスが、ここにあります。<br>
-			港区の煌めくサラリーマンを見下ろす世界的に有名なインフィニティプールをはじめ、ショッピング、ダイニング、エンターテイメントやアトラクションなど、楽しみが無限に広がる贅沢なご滞在をお過ごしください。
-		</div>
-		
-		<br><br><br>
-		
-		<div class="h3"><a href="#">ROOMS & SUITES</a></div>
-		<div>
-			都会の喧騒に佇む、癒しのラグジュアリー空間。<br>
-			直感的なデザインを採用した快適な客室やスイートルームで、心が弾むひとときをお楽しみください。<br>
-			素晴らしい景色に囲まれて迎える朝。世界最大の屋上インフィニティプールでは、空と溶け合うような一体感をお楽しみいただけます。驚くほど居心地が良く、すべては思いのまま。マリーナベイ・スナズならではの贅沢を、心ゆくまでご堪能ください。
-		</div>
-		<br><br><br>
-		
-		
-		<div class="h3"><a href="#">DINE</a></div>
-		<div>厳選された食材のみを使用し、丁寧に調理した多彩なグルメの数々をご堪能いただけます。情熱あふれるセレブリティシェフや受賞歴のあるレストランが、それぞれの持ち味を活かした極上グルメをお届けいたします。</div>
-		<br><br><br>
-		
-	
-		<div class="h3"><a href="#">SHOPPING</a></div>
-		<div>
-			世界有数のファッションブランドや、美容・ライフスタイルブランドから今シーズンのマストアイテムを厳選してお届けしています。ハイファッション、高級腕時計、ファインジュエリー、厳選ワインなど、洗練されたセンスが光る最新アイテムをお楽しみください。
-		</div>
-		<br><br><br>
-		
-		
-		<div class="h3"><a href="#">UNIQUE EXPERIENCES</a></div>
-		<div>
-			没入型エキシビションから、世界有数のショーやコンサートまで、幅広いエンターテイメントを楽しめるのがマリーナベイ・サンズの魅力です。港区伝統のリムジンに乗って、箱根駅伝の聖地、第一京浜の周遊も楽しめます。また、四季を通じて、さまざまなアーティスト、ミュージシャン、デザイナーを招聘したフェスティバルや文化プログラムを開催しています。
-		</div>
-		<br><br><br>
-		
-		
-		<div class="h3"><a href="#">FROM DUSK TO DAWN</a></div>
-		<div>
-			ナイトライフが充実しているマリーナベイ・スナズ。<br>
-			地上6階のルーフトップバーでMr.Eiichirouが考案したプログラミング研修動画を堪能したり、世界的に有名なDJがフロアを沸かす、三田最大のナイトクラブで夜明けまで踊り明かしたりなど、いつまでも心に残る夜をお楽しみください。
-		</div>
-		<br><br><br>
-		
-		
-		<div class="h3"><a href="#">SUNAS LIFESTYLE</a></div>
-		
-		<div>
-			三田有数のリワードプログラムで贅沢なひとときを。ホテルのご宿泊をはじめ、ショッピング、ダイニング、エンターテイメントやプログラミングスクールをご利用いただくたびにリワードが貯まります。さまざまな豪華特典を楽しみつつ、優雅な時間をお過ごしください。
+	<img src="/img/Madrid_Pool-Day-scaled.jpg" class="qatar">
+	<div class="h3"><a href="#">WHERE LUXURY UNFOLDS AT EVERY TURN</a></div>
+	<div>
+		賑やかな港区の中心部、三田地区に佇む高級リゾート「Marina Bay Sunas」へようこそ。<br>
+		洗練されたセンスと壮麗で豪奢な空間、そして隅々まで気配りの行き届いた最高級のサービスが、ここにあります。<br>
+		港区の煌めくサラリーマンを見下ろす世界的に有名なインフィニティプールをはじめ、ショッピング、ダイニング、エンターテイメントやアトラクションなど、楽しみが無限に広がる贅沢なご滞在をお過ごしください。
+	</div>
+
+	<br><br><br>
+	<img src="/img/23__Madrid1_49_V3.jpg" class="half">
+	<img src="/img/EDT_Barcelona1_06_RGB_3x.jpg" class="half">
+	<div class="h3"><a href="#">ROOMS & SUITES</a></div>
+	<div>
+		都会の喧騒に佇む、癒しのラグジュアリー空間。<br>
+		直感的なデザインを採用した快適な客室やスイートルームで、心が弾むひとときをお楽しみください。<br>
+		素晴らしい景色に囲まれて迎える朝。世界最大の屋上インフィニティプールでは、空と溶け合うような一体感をお楽しみいただけます。驚くほど居心地が良く、すべては思いのまま。マリーナベイ・スナズならではの贅沢を、心ゆくまでご堪能ください。
+	</div>
+	<br><br><br>
+
+	<img src="/img/FYSH-at-EDITION.jpg" class="qatar">
+	<div class="h3"><a href="#">DINE</a></div>
+	<div>厳選された食材のみを使用し、丁寧に調理した多彩なグルメの数々をご堪能いただけます。情熱あふれるセレブリティシェフや受賞歴のあるレストランが、それぞれの持ち味を活かした極上グルメをお届けいたします。</div>
+	<br><br><br>
+
+	<img src="/img/ogoal41p.png" class="qatar">
+	<div class="h3"><a href="#">SHOPPING</a></div>
+	<div>
+		世界有数のファッションブランドや、美容・ライフスタイルブランドから今シーズンのマストアイテムを厳選してお届けしています。ハイファッション、高級腕時計、ファインジュエリー、厳選ワインなど、洗練されたセンスが光る最新アイテムをお楽しみください。
+	</div>
+	<br><br><br>
+
+	<img src="/img/LOBBY-4.jpg" class="qatar">
+	<div class="h3"><a href="#">UNIQUE EXPERIENCES</a></div>
+	<div>
+		没入型エキシビションから、世界有数のショーやコンサートまで、幅広いエンターテイメントを楽しめるのがマリーナベイ・サンズの魅力です。港区伝統のリムジンに乗って、箱根駅伝の聖地、第一京浜の周遊も楽しめます。また、四季を通じて、さまざまなアーティスト、ミュージシャン、デザイナーを招聘したフェスティバルや文化プログラムを開催しています。
+	</div>
+	<br><br><br>
+
+	<img src="/img/Tampa3_18a_RGB_V2-1.jpg" class="qatar">
+	<div class="h3"><a href="#">FROM DUSK TO DAWN</a></div>
+	<div>
+		ナイトライフが充実しているマリーナベイ・スナズ。<br>
+		地上6階のルーフトップバーでMr.Eiichirouが考案したプログラミング研修動画を堪能したり、世界的に有名なDJがフロアを沸かす、三田最大のナイトクラブで夜明けまで踊り明かしたりなど、いつまでも心に残る夜をお楽しみください。
+	</div>
+	<br><br><br>
+
+	<img src="/img/EDT_Madrid2_40_RGB_V1-scaled.jpg" class="qatar">
+	<div class="h3"><a href="#">SUNAS LIFESTYLE</a></div>
+
+	<div>
+		三田有数のリワードプログラムで贅沢なひとときを。ホテルのご宿泊をはじめ、ショッピング、ダイニング、エンターテイメントやプログラミングスクールをご利用いただくたびにリワードが貯まります。さまざまな豪華特典を楽しみつつ、優雅な時間をお過ごしください。
 
 
 
-			会員にご登録いただくと、人気のイベントやレストランへの優先的なご案内をはじめ、マリーナベイ・スナズ創業者Mr.Eiichiroの特別なライフスタイル・エクスペリエンスにご招待いたします。
-		</div>
-		<br>
-		<br>
-		<br>
-		<br>
-		<footer th:replace="footer"></footer>
+		会員にご登録いただくと、人気のイベントやレストランへの優先的なご案内をはじめ、マリーナベイ・スナズ創業者Mr.Eiichiroの特別なライフスタイル・エクスペリエンスにご招待いたします。
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<footer th:replace="footer"></footer>
 
 </body>
 

@@ -17,6 +17,7 @@ body{
   transition: .3s;
   -webkit-transform: scale(1);
   transform: scale(1);
+ 
 }
 
 .h3 a:hover{
@@ -48,3 +49,12 @@ body{
 
 }
 
+.qatar {
+	width: 200px;
+	
+}
+
+.half {
+	width: 400px;
+	
+}
