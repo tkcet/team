@@ -44,8 +44,16 @@
 		　　　　　　　　　　　　　[[${month}]]月　　　　　　　　　　　　　
 		<a th:href="|/user/reserve?month=${nextMonth}&year=${nextYear}|" style="text-decoration: none;">▶</a>
 	</h2>
-	<a th:href="|/user/reserve?year=${year}&month=${month}&floor=0|">2F</a>　<a th:href="|/user/reserve?year=${year}&month=${month}&floor=1|">3F</a>　<a
-		th:href="|/user/reserve?year=${year}&month=${month}&floor=2|">5F</a>
+	<form th:action="|/user/reserve?year=${year}&month=${month}|" method="get" align="left">
+		<input type="hidden" name="year" th:value="${year}">
+		<input type="hidden" name="month" th:value="${month}">
+		<input type="number" min="1" max="31" name="minDay" th:value="${minDay}">日～
+		<input type="number" min="1" max="31" name="maxDay" th:value="${maxDay}">日
+		<input type="submit" value="日にち検索">
+	</form>
+	<a th:href="|/user/reserve?year=${year}&month=${month}&floor=0&minDay=${minDay}&maxDay=${maxDay}|">2F</a>
+	　<a th:href="|/user/reserve?year=${year}&month=${month}&floor=1&minDay=${minDay}&maxDay=${maxDay}|">3F</a>
+	　<a th:href="|/user/reserve?year=${year}&month=${month}&floor=2&minDay=${minDay}&maxDay=${maxDay}|">5F</a>
 	<style type="text/css">
 		.diagonal tr:first-child th:first-child {
 			background-image: linear-gradient(to right top, transparent calc(50% - 0.5px), #000000 50%, #000000 calc(50% + 0.5px), transparent calc(50% + 1px));
@@ -68,11 +76,11 @@
 	<table align="center" border="1" class="diagonal">
 		<tr>
 			<th><span class="col-header">日付</span><span class="row-header">部屋番号</span></th>
-			<th width="30" align="center" th:each="day:${#numbers.sequence(1,maxDay)}">[[${day}]]</th>
+			<th width="30" align="center" th:each="day:${#numbers.sequence(minDay,maxDay)}">[[${day}]]</th>
 		</tr>
 		<tr th:each="i : ${#numbers.sequence(Floor, Floor+9)}">
 			<th th:text="${roomList[i]}" align="center"></th>
-			<span th:each="day:${#numbers.sequence(0,maxDay-1)}">
+			<span th:each="day:${#numbers.sequence(minDay-1,maxDay-1)}">
 				<span th:if="${roomEmpty[i][day]} eq 1">
 					<td width="30" align="center" style="background: #ff0000"></td>
 				</span>

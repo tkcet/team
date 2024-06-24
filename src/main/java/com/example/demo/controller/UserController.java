@@ -52,13 +52,28 @@ public class UserController {
 	public String reserve(Model model,
 			@RequestParam(name = "month", required = false) Integer month,
 			@RequestParam(name = "year", required = false) Integer year,
-			@RequestParam(name = "floor", required = false) Integer floor) {
+			@RequestParam(name = "floor", required = false) Integer floor,
+			@RequestParam(name = "minDay", required = false) Integer minDay,
+			@RequestParam(name = "maxDay", required = false) Integer maxDay) {
 		List<Order> order = null;
 		LocalDate now = LocalDate.now();
 		year = year != null ? year : now.getYear();
 		month = month != null ? month : now.getMonthValue();
 		LocalDate date = LocalDate.of(year, month, 1);
-		int maxDay = date.lengthOfMonth();
+		if (minDay == null) {
+			minDay = 1;
+		}
+		if (maxDay == null) {
+			maxDay = date.lengthOfMonth();
+		}
+		if (maxDay > date.lengthOfMonth()) {
+			maxDay = date.lengthOfMonth();
+		}
+		if (minDay > maxDay) {
+			Integer num = maxDay;
+			maxDay = minDay;
+			minDay = num;
+		}
 
 		List<Integer> roomList = roomRepository.findRoom();
 		Integer[][] roomEmpty = new Integer[30][31];
@@ -125,6 +140,7 @@ public class UserController {
 		model.addAttribute("lastMonth", month - 1 < 1 ? 12 : month - 1);
 		model.addAttribute("month", month);
 		model.addAttribute("nextMonth", month + 1 > 12 ? 1 : month + 1);
+		model.addAttribute("minDay", minDay);
 		model.addAttribute("maxDay", maxDay);
 		model.addAttribute("roomEmpty", roomEmpty);
 
