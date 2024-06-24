@@ -494,7 +494,7 @@ public class UserController {
 				error.add("予約が埋まっています");
 				model.addAttribute("error", error);
 
-				return "userReserve";
+				return "userArchive";
 			}
 		}
 
