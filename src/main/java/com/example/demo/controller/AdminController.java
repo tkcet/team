@@ -115,6 +115,11 @@ public class AdminController {
 			return "adminUpdateExecute";
 		}
 
+		account.setName(name);
+		account.setGender(gender);
+		account.setAddress(address);
+		account.setTel(tel);
+		account.setEmail(email);
 		account.setVersionNo(account.getVersionNo() + 1);
 		account.setUpdater(loginAdmin.getName());
 		account.setUpdateDate(LocalDate.now());

@@ -161,8 +161,8 @@ public class AccountController {
 			return "userPasswordUpdate";
 		}
 
+		account.setPassword(newPassword);	
 		account.setUpdateDate(LocalDate.now());
-
 		account.setVersionNo(account.getVersionNo()+1);
 
 		accountRepository.saveAndFlush(account);
