@@ -10,6 +10,10 @@
 <body>
 	<div style="text-align: center;">
 		<h1>管理者用</h1>
+		<form action="/admin/logout" method="get">
+			<input type="submit" value="ログアウト" class="log">
+		</form>
+		<hr>
 		<h3>変更する顧客情報</h3>
 
 		<form action="/admin/update" method="post">
@@ -71,10 +75,7 @@
 
 		<br>
 		<a href="/admin/top">顧客情報一覧画面へ</a>
-		<br>
-		<form action="/admin/logout" method="get">
-			<input type="submit" value="ログアウト" class="log">
-		</form>
+		
 </body>
 
 </html>

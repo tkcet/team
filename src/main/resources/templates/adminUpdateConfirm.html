@@ -10,7 +10,10 @@
 <body>
 
 	<h1>管理者用</h1>
-	<br>
+	<form action="/admin/logout" method="get">
+		<input type="submit" value="ログアウト" class="log">
+	</form>
+	<hr>
 	<h3>以下の内容で顧客情報を変更しました。</h3>
 	<table border="1">
 		<tr>
@@ -38,12 +41,9 @@
 			<td>[[${newAccount.email}]]</td>
 		</tr>
 	</table>
-
-	<a href="/admin/top">顧客情報一覧画面へ</a>
 	<br>
-	<form action="/admin/logout" method="get">
-		<input type="submit" value="ログアウト" class="log">
-	</form>
+	<a href="/admin/top">顧客情報一覧画面へ</a>
+
 </body>
 
 </html>
