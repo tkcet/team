@@ -18,8 +18,8 @@ create_date DATE DEFAULT CURRENT_DATE,
 creater VARCHAR(20),
 update_date DATE DEFAULT CURRENT_DATE,
 updater VARCHAR(20),
-version_no INTEGER,
-deletion_flag INTEGER
+version_no INTEGER DEFAULT 1,
+deletion_flag INTEGER DEFAULT 0
 );
 
 -- 商品テーブル
@@ -31,8 +31,8 @@ create_date DATE DEFAULT CURRENT_DATE,
 creater VARCHAR(20),
 update_date DATE DEFAULT CURRENT_DATE,
 updater VARCHAR(20),
-version_no INTEGER,
-deletion_flag INTEGER
+version_no INTEGER DEFAULT 1,
+deletion_flag INTEGER DEFAULT 0
 );
 -- 注文テーブル
 CREATE TABLE orders
@@ -48,6 +48,6 @@ create_date DATE DEFAULT CURRENT_DATE,
 creater VARCHAR(20),
 update_date DATE DEFAULT CURRENT_DATE,
 updater VARCHAR(20),
-version_no INTEGER,
-deletion_flag INTEGER
+version_no INTEGER DEFAULT 1,
+deletion_flag INTEGER DEFAULT 0
 );
