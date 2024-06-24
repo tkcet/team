@@ -43,11 +43,11 @@
 		　　　　　　　　　　　　　[[${month}]]月　　　　　　　　　　　　　
 		<a th:href="|/user/reserve?month=${nextMonth}&year=${nextYear}|" style="text-decoration: none;">▶</a>
 	</h2>
-	<a th:href="|/user/reserve?month=${month}&floor=0|">2F</a>　<a th:href="|/user/reserve?month=${month}&floor=1|">3F</a>　<a
-		th:href="|/user/reserve?month=${month}&floor=2|">5F</a>
+	<a th:href="|/user/reserve?year=${year}month=${month}&floor=0|">2F</a>　<a th:href="|/user/reserve?year=${year}month=${month}&floor=1|">3F</a>　<a
+		th:href="|/user/reserve?year=${year}month=${month}&floor=2|">5F</a>
 	<style type="text/css">
 		.diagonal tr:first-child th:first-child {
-			background-image: linear-gradient(to right top, transparent calc(50% - 0.5px), #eaeaea 50%, #eaeaea calc(50% + 0.5px), transparent calc(50% + 1px));
+			background-image: linear-gradient(to right top, transparent calc(50% - 0.5px), #000000 50%, #000000 calc(50% + 0.5px), transparent calc(50% + 1px));
 			display: grid;
 			width: max-content;
 			justify-content: space-between;
@@ -66,17 +66,14 @@
 	</style>
 	<table align="center" border="1" class="diagonal">
 		<tr>
-			<td align="center"><span class="col-header">部屋番号</span><span class="row-header">日付</span></td>
-			<td width="30" align="center" th:each="day:${#numbers.sequence(1,maxDay)}">
-				[[${day}]]
-			</td>
+			<th><span class="col-header">日付</span><span class="row-header">部屋番号</span></th>
+			<th width="30" align="center" th:each="day:${#numbers.sequence(1,maxDay)}">[[${day}]]</th>
 		</tr>
 		<tr th:each="i : ${#numbers.sequence(Floor, Floor+9)}">
-			<td th:text="${roomList[i]}" align="center"></td>
+			<th th:text="${roomList[i]}" align="center"></th>
 			<span th:each="day:${#numbers.sequence(0,maxDay-1)}">
 				<span th:if="${roomEmpty[i][day]} eq 1">
-					<td width="30" align="center" style="background: rgb(128, 128, 128)">
-					</td>
+					<td width="30" align="center" style="background: #ff0000"></td>
 				</span>
 				<span th:if="${roomEmpty[i][day]} ne 1">
 					<td width="30" align="center"></td>
