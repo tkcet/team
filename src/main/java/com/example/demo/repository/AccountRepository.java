@@ -10,12 +10,11 @@ import com.example.demo.entity.Account;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Integer> {
-	Optional<Account> findByEmailAndPassword(String email, String password);
-
 	Optional<Account> findByEmail(String email);
-	
+
 	Optional<Account> findByEmailAndTel(String email, String tel);
 
+	Optional<Account> findByEmailAndPassword(String email, String password);
 
 	//adminController
 	List<Account> findByDeletionFlag(Integer deletionFlag);

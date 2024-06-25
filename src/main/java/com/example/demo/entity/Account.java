@@ -38,21 +38,21 @@ public class Account {
 	public Account() {
 
 	}
-	
-	
 
-	public Account(String name, String gender, String address, String tel, String email,
-			String password, Integer deletionFlag) {
-		this.name = name;
-		this.gender = gender;
-		this.address = address;
+	public Account(String tel, String email, String password) {
+		this.tel = tel;
+		this.email = email;
+		this.password = password;
+	}
+
+	public Account(Integer accountId, String tel, String email, String password, Integer deletionFlag) {
+		super();
+		this.accountId = accountId;
 		this.tel = tel;
 		this.email = email;
 		this.password = password;
 		this.deletionFlag = deletionFlag;
 	}
-    
-
 
 	public Account(String name, String gender, String address, String tel, String email,
 			String password) {
@@ -64,7 +64,16 @@ public class Account {
 		this.password = password;
 	}
 
-
+	public Account(String name, String gender, String address, String tel, String email,
+			String password, Integer deletionFlag) {
+		this.name = name;
+		this.gender = gender;
+		this.address = address;
+		this.tel = tel;
+		this.email = email;
+		this.password = password;
+		this.deletionFlag = deletionFlag;
+	}
 
 	public Account(Integer accountId, String name, String gender, String address, String tel, String email,
 			String password, LocalDate createDate, String creater, LocalDate updateDate, String updater,
@@ -83,21 +92,5 @@ public class Account {
 		this.versionNo = versionNo;
 		this.deletionFlag = deletionFlag;
 	}
-	
-	public Account(String tel, String email,String password) {
-		this.tel = tel;
-		this.email = email;
-		this.password = password;
-	}
 
-
-
-	public Account(Integer accountId, String tel, String email, String password,Integer deletionFlag) {
-		super();
-		this.accountId = accountId;
-		this.tel = tel;
-		this.email = email;
-		this.password = password;
-		this.deletionFlag = deletionFlag;
-	}
 }
