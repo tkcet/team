@@ -1,5 +1,6 @@
-INSERT INTO account(name,gender,address,tel,email,password,deletion_flag) VALUES('administrater1','women','Japan','111','admin1@gmail.com','himitu',0);
-INSERT INTO account(name,gender,address,tel,email,password,deletion_flag) VALUES('administrater2','women','Japan','222','admin2@gmail.com','himitu',0);
+INSERT INTO account(name,gender,address,tel,email,password,creater,deletion_flag) VALUES('administrater1','women','Japan','111','admin1@gmail.com','himitu','Mika.T',0);
+INSERT INTO account(name,gender,address,tel,email,password,creater,deletion_flag) VALUES('administrater2','women','Japan','222','admin2@gmail.com','himitu','Mika.T',0);
+
 
 INSERT INTO room(room_no, price, deletion_flag) VALUES(201, 5000, 0);
 INSERT INTO room(room_no, price, deletion_flag) VALUES(202, 5000, 0);
