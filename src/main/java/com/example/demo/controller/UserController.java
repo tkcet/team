@@ -217,6 +217,8 @@ public class UserController {
 		model.addAttribute("lastMonth", month - 1 < 1 ? 12 : month - 1);
 		model.addAttribute("month", month);
 		model.addAttribute("nextMonth", month + 1 > 12 ? 1 : month + 1);
+		Integer minDay = 1;
+		model.addAttribute("minDay", minDay);
 		model.addAttribute("maxDay", maxDay);
 		model.addAttribute("roomEmpty", roomEmpty);
 		Integer[] Floor = { 0, 1, 2 };
@@ -513,7 +515,7 @@ public class UserController {
 		if (count != 0) {
 			model.addAttribute("error", error);
 			Optional<Order> record = orderRepository.findByOrdersId(ordersId);
-			
+
 			model.addAttribute("order", record.get());
 
 			return "userUpdate";
@@ -530,7 +532,7 @@ public class UserController {
 			} else {
 				error.add("予約が埋まっています");
 				Optional<Order> record = orderRepository.findByOrdersId(ordersId);
-				
+
 				model.addAttribute("order", record.get());
 				model.addAttribute("error", error);
 
