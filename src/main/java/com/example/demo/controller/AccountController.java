@@ -25,7 +25,6 @@ public class AccountController {
 
 	@Autowired
 	AccountRepository accountRepository;
-	
 	@Autowired
 	HttpSession session;
 
@@ -46,12 +45,8 @@ public class AccountController {
 			@RequestParam("password") String password,
 			Model model) {
 		Optional<Account> record = accountRepository.findByEmailAndPassword(email, password);
-		if (record.isEmpty()) {
-			model.addAttribute("error", "メールアドレスもしくはパスワードが一致しませんでした");
-			return "userLogin";
-		}
 		Account account = record.get();
-		if ( account.getDeletionFlag() == 1) {
+		if (record.isEmpty() || account.getDeletionFlag() == 1) {
 			model.addAttribute("error", "メールアドレスもしくはパスワードが一致しませんでした");
 			return "userLogin";
 		}
@@ -160,14 +155,18 @@ public class AccountController {
 			model.addAttribute("error","パスワードと確認用パスワードが一致しません");
 			return "userPasswordUpdate";
 		}
+		if (record.isEmpty()) {
+			model.addAttribute("error", "メールアドレスもしくは電話番号が一致しませんでした");
+			return "userPasswordUpdate";
+		}
 		Account account = record.get();
-		if (record.isEmpty()||account.getDeletionFlag() == 1) {
+		if (account.getDeletionFlag() == 1) {
 			model.addAttribute("error", "メールアドレスもしくは電話番号が一致しませんでした");
 			return "userPasswordUpdate";
 		}
 
-		account.setPassword(newPassword);	
 		account.setUpdateDate(LocalDate.now());
+
 		account.setVersionNo(account.getVersionNo()+1);
 
 		accountRepository.saveAndFlush(account);
