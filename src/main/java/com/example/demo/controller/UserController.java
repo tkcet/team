@@ -299,7 +299,7 @@ public class UserController {
 			error.add("チェックインがチェックアウトより前です");
 			count++;
 		}
-		if ((int) (ChronoUnit.DAYS.between(checkOut, now)) > 0) {
+		if ((int) (ChronoUnit.DAYS.between(checkIn, now)) > 0 || (int) (ChronoUnit.DAYS.between(checkOut, now)) > 0) {
 			error.add("予約が今日より前です");
 			count++;
 		}
@@ -511,7 +511,7 @@ public class UserController {
 			error.add("チェックインがチェックアウトより前です");
 			count++;
 		}
-		if ((int) (ChronoUnit.DAYS.between(checkOut, now)) > 0) {
+		if ((int) (ChronoUnit.DAYS.between(checkIn, now)) > 0 || (int) (ChronoUnit.DAYS.between(checkOut, now)) > 0) {
 			error.add("予約が今日より前です");
 			count++;
 		}
