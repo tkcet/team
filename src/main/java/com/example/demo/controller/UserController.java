@@ -142,6 +142,8 @@ public class UserController {
 		model.addAttribute("nextMonth", month + 1 > 12 ? 1 : month + 1);
 		model.addAttribute("minDay", minDay);
 		model.addAttribute("maxDay", maxDay);
+		int week = date.getDayOfWeek().getValue();
+		model.addAttribute("week", week == 7 ? 0 : week);
 		model.addAttribute("roomEmpty", roomEmpty);
 
 		Integer[] Floor = { 0, 1, 2 };
@@ -220,6 +222,8 @@ public class UserController {
 		Integer minDay = 1;
 		model.addAttribute("minDay", minDay);
 		model.addAttribute("maxDay", maxDay);
+		int week = date.getDayOfWeek().getValue();
+		model.addAttribute("week", week == 7 ? 0 : week);
 		model.addAttribute("roomEmpty", roomEmpty);
 		Integer[] Floor = { 0, 1, 2 };
 		if (floor == null) {
@@ -383,7 +387,11 @@ public class UserController {
 		model.addAttribute("lastMonth", month - 1 < 1 ? 12 : month - 1);
 		model.addAttribute("month", month);
 		model.addAttribute("nextMonth", month + 1 > 12 ? 1 : month + 1);
+		Integer minDay = 1;
+		model.addAttribute("minDay", minDay);
 		model.addAttribute("maxDay", maxDay);
+		int week = date.getDayOfWeek().getValue();
+		model.addAttribute("week", week == 7 ? 0 : week);
 		model.addAttribute("roomEmpty", roomEmpty);
 		Integer[] Floor = { 0, 1, 2 };
 		Integer floor = 0;

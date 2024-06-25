@@ -17,7 +17,7 @@
 	<p>ようこそ！[[${@loginAccount.name}]]様</p>
 	<br>
 	<th:block th:if="${error}">
-		<span th:each="err:${error}" style="color:red;">[[${err}]]</span>
+		<span th:each="err:${error}" style="color:red;">[[${err}]]<br></span>
 	</th:block>
 	<form action="/user/reserve" method="post" class="form">
 <!--		Arrival：<input type="date" name="date">～-->
@@ -82,10 +82,20 @@
 			<th th:text="${roomList[i]}" align="center"></th>
 			<span th:each="day:${#numbers.sequence(minDay-1,maxDay-1)}">
 				<span th:if="${roomEmpty[i][day]} eq 1">
-					<td width="30" align="center" style="background: #ff0000"></td>
+					<td width="30" align="center" style="background: #808080"></td>
 				</span>
 				<span th:if="${roomEmpty[i][day]} ne 1">
-					<td width="30" align="center"></td>
+					<span th:if="${(day+week+1) % 7} eq 0">
+						<td width="30" align="center" style="background: #add8e6"></td>
+					</span>
+					<span th:if="${(day+week+1) % 7} ne 0">
+						<span th:if="${(day+week) % 7} eq 0">
+							<td width="30" align="center" style="background: #ff0000"></td>
+						</span>
+						<span th:if="${(day+week) % 7} ne 0">
+							<td width="30" align="center"></td>
+						</span>
+					</span>
 				</span>
 			</span>
 		</tr>
