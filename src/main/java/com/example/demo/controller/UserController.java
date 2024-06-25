@@ -299,6 +299,10 @@ public class UserController {
 			error.add("チェックインがチェックアウトより前です");
 			count++;
 		}
+		if ((int) (ChronoUnit.DAYS.between(checkOut, now)) > 0) {
+			error.add("予約が今日より前です");
+			count++;
+		}
 		List<Room> room = roomRepository.findByRoomNo(roomNo);
 		if (room.isEmpty()) {
 			error.add("他の部屋番号を入力してください");
@@ -505,6 +509,10 @@ public class UserController {
 		}
 		if ((int) (ChronoUnit.DAYS.between(checkIn, checkOut)) < 0) {
 			error.add("チェックインがチェックアウトより前です");
+			count++;
+		}
+		if ((int) (ChronoUnit.DAYS.between(checkOut, now)) > 0) {
+			error.add("予約が今日より前です");
 			count++;
 		}
 		List<Room> room = roomRepository.findByRoomNo(roomNo);
