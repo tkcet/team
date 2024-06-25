@@ -40,9 +40,9 @@
 <!--予約-->
 	</form>
 	[[${year}]]
-	<h2 style="text-align: center"><a th:href="|/user/reserve?month=${lastMonth}&year=${lastYear}|" style="text-decoration: none;">◀</a>
+	<h2 style="text-align: center"><a th:href="|/user/reserve?month=${lastMonth}&year=${lastYear}&minDay=${minDay}&maxDay=${maxDay}|" style="text-decoration: none;">◀</a>
 		　　　　　　　　　　　　　[[${month}]]月　　　　　　　　　　　　　
-		<a th:href="|/user/reserve?month=${nextMonth}&year=${nextYear}|" style="text-decoration: none;">▶</a>
+		<a th:href="|/user/reserve?month=${nextMonth}&year=${nextYear}&minDay=${minDay}&maxDay=${maxDay}|" style="text-decoration: none;">▶</a>
 	</h2>
 	<form th:action="|/user/reserve?year=${year}&month=${month}|" method="get" align="left">
 		<input type="hidden" name="year" th:value="${year}">
