@@ -497,6 +497,27 @@ public class UserController {
 			error.add("チェックイン・チェックアウトの日を入力してください");
 			count++;
 		}
+		if (ChronoUnit.DAYS.between(checkIn, checkOut) == 0) {
+			error.add("チェックインとチェックアウトが同じ日です");
+			count++;
+		}
+		if ((int) (ChronoUnit.DAYS.between(checkIn, checkOut)) < 0) {
+			error.add("チェックインがチェックアウトより前です");
+			count++;
+		}
+		List<Room> room = roomRepository.findByRoomNo(roomNo);
+		if (room.isEmpty()) {
+			error.add("他の部屋番号を入力してください");
+			count++;
+		}
+		if (count != 0) {
+			model.addAttribute("error", error);
+			Optional<Order> record = orderRepository.findByOrdersId(ordersId);
+			
+			model.addAttribute("order", record.get());
+
+			return "userUpdate";
+		}
 
 		List<Order> order2 = orderRepository.findOrders(roomNo);
 		for (Order o : order2) {
@@ -508,9 +529,12 @@ public class UserController {
 
 			} else {
 				error.add("予約が埋まっています");
+				Optional<Order> record = orderRepository.findByOrdersId(ordersId);
+				
+				model.addAttribute("order", record.get());
 				model.addAttribute("error", error);
 
-				return "userArchive";
+				return "userUpdate";
 			}
 		}
 
