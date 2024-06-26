@@ -546,13 +546,16 @@ public class UserController {
 					&& (int) (ChronoUnit.DAYS.between(checkOut, o.getCheckOut())) < 0) {
 
 			} else {
-				error.add("予約が埋まっています");
-				Optional<Order> record = orderRepository.findByOrdersId(ordersId);
+				if (ordersId != o.getOrdersId()) {
 
-				model.addAttribute("order", record.get());
-				model.addAttribute("error", error);
+					error.add("予約が埋まっています");
+					Optional<Order> record = orderRepository.findByOrdersId(ordersId);
 
-				return "userUpdate";
+					model.addAttribute("order", record.get());
+					model.addAttribute("error", error);
+
+					return "userUpdate";
+				}
 			}
 		}
 
