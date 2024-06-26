@@ -45,8 +45,12 @@ public class AccountController {
 			@RequestParam("password") String password,
 			Model model) {
 		Optional<Account> record = accountRepository.findByEmailAndPassword(email, password);
+		if (record.isEmpty()) {
+			model.addAttribute("error", "メールアドレスもしくはパスワードが一致しませんでした");
+			return "userLogin";
+		}
 		Account account = record.get();
-		if (record.isEmpty() || account.getDeletionFlag() == 1) {
+		if (account.getDeletionFlag() == 1) {
 			model.addAttribute("error", "メールアドレスもしくはパスワードが一致しませんでした");
 			return "userLogin";
 		}
