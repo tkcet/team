@@ -15,10 +15,10 @@ tel VARCHAR(11),
 email VARCHAR(256) UNIQUE,
 password VARCHAR(20),
 create_date DATE DEFAULT CURRENT_DATE,
-creater VARCHAR(20),
+creater VARCHAR(20) ,
 update_date DATE DEFAULT CURRENT_DATE,
 updater VARCHAR(20),
-version_no INTEGER DEFAULT 1,
+version_no INTEGER  DEFAULT 1,
 deletion_flag INTEGER DEFAULT 0
 );
 
@@ -28,10 +28,10 @@ CREATE TABLE room
 room_no INTEGER PRIMARY KEY,
 price INTEGER,
 create_date DATE DEFAULT CURRENT_DATE,
-creater VARCHAR(20) DEFAULT 'Mika.T',
+creater VARCHAR(20)  DEFAULT 'Mika.T',
 update_date DATE DEFAULT CURRENT_DATE,
 updater VARCHAR(20),
-version_no INTEGER DEFAULT 1,
+version_no INTEGER  DEFAULT 1,
 deletion_flag INTEGER DEFAULT 0
 );
 -- 注文テーブル
@@ -48,6 +48,6 @@ create_date DATE DEFAULT CURRENT_DATE,
 creater VARCHAR(20),
 update_date DATE DEFAULT CURRENT_DATE,
 updater VARCHAR(20),
-version_no INTEGER DEFAULT 1,
+version_no INTEGER  DEFAULT 1,
 deletion_flag INTEGER DEFAULT 0
 );
