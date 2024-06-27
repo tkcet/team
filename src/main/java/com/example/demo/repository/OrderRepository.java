@@ -11,7 +11,7 @@ import com.example.demo.entity.Order;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Integer> {
-	@Query(value = "SELECT * FROM orders WHERE account_id = ? AND deletion_flag = 0", nativeQuery = true)
+	@Query(value = "SELECT * FROM orders WHERE account_id = ? AND deletion_flag = 0 ORDER BY check_in, orders_id", nativeQuery = true)
 	public abstract List<Order> findByAccountId(Integer accountId);
 
 	public abstract Optional<Order> findByOrdersId(Integer oredersId);

@@ -253,31 +253,31 @@ public class UserController {
 				return "userReserve";
 			}
 		}
-		Integer[] booking = new Integer[31];
-
-		for (int i = 0; i < 31; i++) {
-			booking[i] = 0;
-		}
-		Integer day1 = checkIn.getDayOfMonth() - 1;
-		Integer day2 = checkOut.getDayOfMonth() - 1;
-		for (int i = day1; i <= day2; i++) {
-			booking[i] = 1;
-		}
-		if (roomNo == 0) {
-			for (int i = 0; i < 30; i++) {
-				int judge = 0;
-				for (int j = 0; j < 31; j++) {
-					if (roomEmpty[i][j] == 1 && booking[j] == 1) {
-						judge++;
-					}
-				}
-				if (judge == 0) {
-					roomNo = roomList.get(i);
-					break;
-				}
-			}
-		}
-
+//		Integer[] booking = new Integer[31];
+//
+//		for (int i = 0; i < 31; i++) {
+//			booking[i] = 0;
+//		}
+//		Integer day1 = checkIn.getDayOfMonth() - 1;
+//		Integer day2 = checkOut.getDayOfMonth() - 1;
+//		for (int i = day1; i <= day2; i++) {
+//			booking[i] = 1;
+//		}
+//		if (roomNo == 0) {
+//			for (int i = 0; i < 30; i++) {
+//				int judge = 0;
+//				for (int j = 0; j < 31; j++) {
+//					if (roomEmpty[i][j] == 1 && booking[j] == 1) {
+//						judge++;
+//					}
+//				}
+//				if (judge == 0) {
+//					roomNo = roomList.get(i);
+//					break;
+//				}
+//			}
+//		}
+		
 		if (ChronoUnit.DAYS.between(checkIn, checkOut) == 0) {
 			error.add("チェックインとチェックアウトが同じ日です");
 			count++;
