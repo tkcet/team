@@ -53,6 +53,68 @@
 	</form>
 	<br><br>
 	<a href="/user/archive">BACK</a>
+	<br><br>
+	[[${year}]]
+	<h2 style="text-align: center"><a th:href="|/user/update/${ordersId}?month=${lastMonth}&year=${lastYear}&minDay=${minDay}&maxDay=${maxDay}|" style="text-decoration: none;">◀</a>
+		　　　　　　　　　　　　　[[${month}]]月　　　　　　　　　　　　　
+		<a th:href="|/user/update/${ordersId}?month=${nextMonth}&year=${nextYear}&minDay=${minDay}&maxDay=${maxDay}|" style="text-decoration: none;">▶</a>
+	</h2>
+	<form th:action="|/user/update/${ordersId}?year=${year}&month=${month}|" method="get" align="left">
+		<input type="hidden" name="year" th:value="${year}">
+		<input type="hidden" name="month" th:value="${month}">
+		<input type="number" min="1" max="31" name="minDay" th:value="${minDay}">日～
+		<input type="number" min="1" max="31" name="maxDay" th:value="${maxDay}">日
+		<input type="submit" value="日にち検索">
+	</form>
+	<a th:href="|/user/update/${ordersId}?year=${year}&month=${month}&floor=0&minDay=${minDay}&maxDay=${maxDay}|">2F</a>
+	　<a th:href="|/user/update/${ordersId}?year=${year}&month=${month}&floor=1&minDay=${minDay}&maxDay=${maxDay}|">3F</a>
+	　<a th:href="|/user/update/${ordersId}?year=${year}&month=${month}&floor=2&minDay=${minDay}&maxDay=${maxDay}|">5F</a>
+	<style type="text/css">
+		.diagonal tr:first-child th:first-child {
+			background-image: linear-gradient(to right top, transparent calc(50% - 0.5px), #000000 50%, #000000 calc(50% + 0.5px), transparent calc(50% + 1px));
+			display: grid;
+			width: max-content;
+			justify-content: space-between;
+			grid-template-columns: repeat(2, 1fr);
+			grid-auto-rows: 1fr;
+		}
+
+		.col-header {
+			grid-column-start: 2;
+			text-align: right;
+		}
+
+		.row-header {
+			grid-column-start: 1;
+		}
+	</style>
+	<table align="center" border="1" class="diagonal">
+		<tr>
+			<th><span class="col-header">日付</span><span class="row-header">部屋番号</span></th>
+			<th width="30" align="center" th:each="day:${#numbers.sequence(minDay,maxDay)}">[[${day}]]</th>
+		</tr>
+		<tr th:each="i : ${#numbers.sequence(Floor, Floor+9)}">
+			<th th:text="${roomList[i]}" align="center"></th>
+			<span th:each="day:${#numbers.sequence(minDay-1,maxDay-1)}">
+				<span th:if="${roomEmpty[i][day]} eq 1">
+					<td width="30" align="center" style="background: #808080"></td>
+				</span>
+				<span th:if="${roomEmpty[i][day]} ne 1">
+					<span th:if="${(day+week+1) % 7} eq 0">
+						<td width="30" align="center" style="background: #add8e6"></td>
+					</span>
+					<span th:if="${(day+week+1) % 7} ne 0">
+						<span th:if="${(day+week) % 7} eq 0">
+							<td width="30" align="center" style="background: #ff0000"></td>
+						</span>
+						<span th:if="${(day+week) % 7} ne 0">
+							<td width="30" align="center"></td>
+						</span>
+					</span>
+				</span>
+			</span>
+		</tr>
+	</table>
 
 
 	<footer th:replace="footer"></footer>
