@@ -168,6 +168,7 @@ public class AccountController {
 			model.addAttribute("error", "メールアドレスもしくは電話番号が一致しませんでした");
 			return "userPasswordUpdate";
 		}
+		account.setPassword(reNewPassword);
 
 		account.setUpdateDate(LocalDate.now());
 
